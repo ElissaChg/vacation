@@ -1,0 +1,135 @@
+<template>
+  <div class="heroimg">
+    <div class="section">
+      <div class="info">
+        <h2>
+          探索<span>台灣之美</span>
+          <div>讓我們更親近這片土地</div>
+        </h2>
+        <h3>
+          <Icon icon="i-sport" color="#E0DA48" size="24" />
+          <span>台灣旅遊景點導覽 Taiwan Travel Guide</span>
+        </h3>
+      </div>
+      <div class="action">
+        <div class="label">搜索景點</div>
+        <input type="text" placeholder="你想去哪裡？請輸入關鍵字" />
+        <div class="submit">
+          <Icon icon="i-search" color="#fff" size="30" />
+          <span>搜尋</span>
+        </div>
+      </div>
+    </div>
+    <div class="slider">
+      <div class="p1"></div>
+    </div>
+  </div>
+</template>
+
+<script>
+import Icon from '@/components/Icon'
+
+export default {
+  name: 'HeroImg',
+  components: {
+    Icon,
+  },
+}
+</script>
+
+<style lang="postcss" scoped>
+@import 'val.postcss';
+.heroimg {
+  padding: 82px 0px 36px 0px;
+}
+.section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0px 95px 60px 95px;
+  box-sizing: border-box;
+}
+.info {
+  & h2 {
+    font-size: var(--text8);
+    font-weight: 300;
+    color: var(--gray2);
+    line-height: 70px;
+    margin: 0px;
+    padding-bottom: 17px;
+    & span {
+      border-bottom: 2px solid var(--green4);
+    }
+  }
+  & h3 {
+    display: flex;
+    align-items: center;
+    font-size: var(--text4);
+    font-weight: 400;
+    color: var(--gray3);
+    margin: 0px;
+  }
+}
+.action {
+  & .label {
+    width: 350px;
+    height: 50px;
+    line-height: 50px;
+    font-size: var(--text2);
+    font-weight: 500;
+    color: var(--green1);
+    border: solid 1px var(--gray5);
+    border-radius: 5px;
+    padding: 0px 30px;
+    box-sizing: border-box;
+    margin-bottom: 7px;
+  }
+  & > input {
+    width: 350px;
+    height: 50px;
+    line-height: 50px;
+    font-size: var(--text2);
+    color: var(--green1);
+    font-weight: 400;
+    border: solid 1px var(--gray5);
+    border-radius: 5px;
+    background-color: var(--gray6);
+    outline: none;
+    padding: 0px 30px;
+    box-sizing: border-box;
+    margin-bottom: 7px;
+    user-select: text;
+    &::placeholder {
+      color: var(--gray4);
+    }
+  }
+}
+.submit {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 350px;
+  height: 50px;
+  line-height: 50px;
+  font-size: var(--text2);
+  font-weight: 700;
+  color: var(--white);
+  background-color: var(--green3);
+  border-radius: 6px;
+  cursor: pointer;
+  & span {
+    letter-spacing: 2rem;
+    padding-left: 10px;
+    box-sizing: border-box;
+  }
+}
+.slider {
+  width: 100%;
+  height: 400px;
+  background-image: url('https://fakeimg.pl/1920x1080/');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  border-radius: 24px;
+}
+</style>

@@ -1,0 +1,19 @@
+@import '_reset.postcss';
+@import 'val.postcss';
+html {
+  font-family: 'Noto Sans TC', sans-serif, Arial, 'Microsoft Jhenghei';
+  font-size: 14px;
+  color: var(--black);
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  user-select: none;
+}
+body {
+  overscroll-behavior-y: none;
+  @apply --scroll;
+}
+img {
+  display: block;
+}
