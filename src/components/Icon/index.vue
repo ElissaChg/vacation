@@ -25,7 +25,7 @@ export default {
   components: {
     'i-arrow': i_arrow,
     'i-search': i_search,
-    'i-sport': i_spot,
+    'i-spot': i_spot,
   },
 }
 </script>

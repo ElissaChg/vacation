@@ -35,12 +35,18 @@ export default {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding-bottom: 15px;
+  padding-bottom: 10px;
+  @media (--pc-viewport) {
+    padding-bottom: 15px;
+  }
   & h4 {
-    font-size: var(--text7);
+    font-size: var(--text6);
     font-weight: 300;
     color: var(--gray2);
     margin: 0px;
+    @media (--pc-viewport) {
+      font-size: var(--text8);
+    }
   }
   & a {
     display: flex;

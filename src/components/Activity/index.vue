@@ -43,7 +43,8 @@ export default {
 <style lang="postcss" scoped>
 @import 'val.postcss';
 .activity {
-  width: 48.6%;
+  width: 100%;
+  height: 62px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -51,33 +52,48 @@ export default {
   background-color: var(--gray6);
   border: 1px solid var(--gray5);
   box-sizing: border-box;
-  margin-bottom: 12px;
-  & .photo {
-    width: 160px;
+  @media (--pc-viewport) {
+    width: 48.6%;
     height: 160px;
+  }
+  & .photo {
+    width: 90px;
+    height: 62px;
     border-top-left-radius: 12px;
     border-bottom-left-radius: 12px;
     overflow: hidden;
+    @media (--pc-viewport) {
+      width: 160px;
+      height: 160px;
+    }
   }
   & .info {
-    width: calc(100% - 160px);
-    height: 160px;
-    padding: 16px 30px;
+    width: calc(100% - 90px);
+    padding: 0px 16px;
     box-sizing: border-box;
+    @media (--pc-viewport) {
+      width: calc(100% - 160px);
+      padding: 16px 30px;
+    }
     & .time {
-      font-size: var(--text2);
+      font-size: var(--text1);
       font-weight: 400;
       color: var(--gray3);
       padding-bottom: 3px;
+      @media (--pc-viewport) {
+        font-size: var(--text2);
+      }
     }
     & .title {
-      height: 60px;
-      line-height: 30px;
-      font-size: var(--text5);
+      font-size: var(--text2);
       font-weight: 700;
       color: var(--gray1);
-      margin-bottom: 17px;
-      overflow: hidden;
+      @media (--pc-viewport) {
+        height: 60px;
+        overflow: hidden;
+        font-size: var(--text5);
+        line-height: 30px;
+      }
     }
     & .bottom {
       display: flex;

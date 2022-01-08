@@ -1,9 +1,12 @@
 <!DOCTYPE html>
-<html lang="">
+<html lang="zh-Hant-TW">
   <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"
+    />
     <link rel="icon" href="<%= BASE_URL %>favicon.ico" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -12,6 +15,84 @@
       rel="stylesheet"
     />
     <title><%= htmlWebpackPlugin.options.title %></title>
+    <style>
+      @keyframes configure-clockwise {
+        0% {
+          transform: rotate(0);
+        }
+        25% {
+          transform: rotate(90deg);
+        }
+        50% {
+          transform: rotate(180deg);
+        }
+        75% {
+          transform: rotate(270deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+      @keyframes configure-xclockwise {
+        0% {
+          transform: rotate(45deg);
+        }
+        25% {
+          transform: rotate(-45deg);
+        }
+        50% {
+          transform: rotate(-135deg);
+        }
+        75% {
+          transform: rotate(-225deg);
+        }
+        100% {
+          transform: rotate(-315deg);
+        }
+      }
+      #loading {
+        position: fixed;
+        top: 0px;
+        left: 0px;
+        bottom: 0px;
+        right: 0px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 99;
+        background-color: rgba(0, 0, 0, 0.2);
+        cursor: not-allowed;
+      }
+      #loading .spinner-box {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+      }
+      #loading .configure-border-1 {
+        width: 115px;
+        height: 115px;
+        border: solid 6px #7f977b;
+        position: absolute;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        animation: configure-xclockwise 3s ease-in-out 0s infinite;
+      }
+      #loading .configure-border-2 {
+        width: 115px;
+        height: 115px;
+        border: solid 6px #ff725e;
+        transform: rotate(45deg);
+        animation: configure-clockwise 3s ease-in-out 0s infinite;
+      }
+      #loading .text {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate3d(-50%, -50%, 0px);
+      }
+    </style>
   </head>
   <body>
     <noscript>
@@ -22,6 +103,13 @@
       >
     </noscript>
     <div id="app"></div>
+    <div id="loading">
+      <div class="spinner-box">
+        <div class="configure-border-1"></div>
+        <div class="configure-border-2"></div>
+        <div class="text">Loading</div>
+      </div>
+    </div>
     <!-- built files will be auto injected -->
   </body>
 </html>

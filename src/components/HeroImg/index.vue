@@ -7,7 +7,7 @@
           <div>讓我們更親近這片土地</div>
         </h2>
         <h3>
-          <Icon icon="i-sport" color="#E0DA48" size="24" />
+          <Icon icon="i-spot" color="#E0DA48" size="24" />
           <span>台灣旅遊景點導覽 Taiwan Travel Guide</span>
         </h3>
       </div>
@@ -62,14 +62,14 @@ export default {
     padding-bottom: 0px;
   }
   & h2 {
-    font-size: var(--text6);
+    font-size: var(--text7);
     font-weight: 300;
     color: var(--gray2);
     line-height: 40px;
     margin: 0px;
     padding-bottom: 14px;
     @media (--pc-viewport) {
-      font-size: var(--text8);
+      font-size: var(--text9);
       line-height: 70px;
       padding-bottom: 17px;
     }
@@ -87,9 +87,16 @@ export default {
     @media (--pc-viewport) {
       font-size: var(--text4);
     }
+    & span {
+      padding-left: 6px;
+    }
   }
 }
 .action {
+  padding-bottom: 38px;
+  @media (--pc-viewport) {
+    padding-bottom: 0px;
+  }
   & .label {
     width: 350px;
     height: 50px;

@@ -42,14 +42,20 @@ export default {
 @import 'val.postcss';
 .container {
   @apply --container;
+  @media (--pc-viewport) {
+    padding: 0px 45px;
+  }
 }
 .section {
   padding-bottom: 36px;
   & .row {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
+    justify-content: center;
+    @media (--pc-viewport) {
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
   }
 }
 </style>
