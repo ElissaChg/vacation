@@ -2,7 +2,7 @@ export default {
   watch: {
     common_isLoading(val) {
       if (val) {
-        document.getElementById('loading').style.display = 'block'
+        document.getElementById('loading').style.display = 'flex'
       } else {
         document.getElementById('loading').style.display = 'none'
       }

@@ -1,8 +1,14 @@
 <template>
   <div id="app">
-    <Header v-if="!common_isLoading" />
-    <router-view v-if="!common_isLoading" />
-    <Footer v-if="!common_isLoading" />
+    <transition name="fade">
+      <Header @open="openNav" v-if="!common_isLoading" />
+    </transition>
+    <transition name="fade">
+      <router-view v-if="!common_isLoading" />
+    </transition>
+    <transition name="fade">
+      <Footer v-if="!common_isLoading" />
+    </transition>
   </div>
 </template>
 
@@ -23,7 +29,12 @@ export default {
     commonDelegate,
     initConfigController /* 網站設定 */,
     verLogConteollrt /* 版號 */,
-    loadingController,
+    loadingController /* 全域 loading */,
   ],
+  methods: {
+    openNav() {
+      this.common_activeNav = !this.common_activeNav
+    },
+  },
 }
 </script>

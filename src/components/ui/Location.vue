@@ -25,6 +25,7 @@ export default {
 <style lang="postcss" scoped>
 @import 'val.postcss';
 .location {
+  width: 100%;
   display: flex;
   align-items: center;
   font-size: var(--text2);
@@ -37,8 +38,11 @@ export default {
     }
   }
   & span {
+    width: 100%;
     font-size: var(--text1);
+    @apply --text-break;
     @media (--pc-viewport) {
+      width: calc(100% - 20px);
       font-size: var(--text2);
       padding-left: 4px;
     }

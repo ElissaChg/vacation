@@ -7,6 +7,7 @@ export default new Vuex.Store({
   state: {
     config: null /* 網站設定 */,
     loadingState: 1 /* loading 計數 loadingState > 0 => loading */,
+    activeNav: false /* 導航側邊欄開關 */,
   },
   mutations: {
     config(state, val) {
@@ -14,6 +15,9 @@ export default new Vuex.Store({
     },
     loadingState(state, val) {
       state.loadingState = val
+    },
+    activeNav(state, val) {
+      state.activeNav = val
     },
   },
   getters: {

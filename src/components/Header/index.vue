@@ -1,23 +1,34 @@
 <template>
   <div class="header">
-    <div class="left">
-      <router-link to="/">
-        <img class="desktop" src="/img/Logo-desktop.png" alt="" />
-        <img class="mobile" src="/img/Logo-mobile.png" alt="" />
-      </router-link>
-      <div class="menu"><div></div></div>
-    </div>
-    <div class="nav">
-      <router-link to="/about">探索景點</router-link>
-      <router-link to="/about">節慶活動</router-link>
-      <router-link to="/about">品嘗美食</router-link>
+    <div class="box">
+      <div class="left">
+        <router-link to="/">
+          <img class="desktop" src="/img/Logo-desktop.png" alt="" />
+          <img class="mobile" src="/img/Logo-mobile.png" alt="" />
+        </router-link>
+        <div
+          class="menu"
+          :class="[common_activeNav ? 'active' : '']"
+          @pointerup.stop="$emit('open')"
+        >
+          <div></div>
+        </div>
+      </div>
+      <div class="nav" :class="[common_activeNav ? 'active' : '']">
+        <router-link to="/about">探索景點</router-link>
+        <router-link to="/about">節慶活動</router-link>
+        <router-link to="/about">品嘗美食</router-link>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
+import commonDelegate from '@/delegate/commonDelegate'
+
 export default {
   name: 'Header',
+  mixins: [commonDelegate],
 }
 </script>
 
@@ -25,24 +36,32 @@ export default {
 @import 'val.postcss';
 .header {
   width: 100%;
-  height: 64px;
   border-bottom: solid 1px var(--gray5);
-  max-width: 1200px;
-  margin: 0px auto;
-  box-sizing: border-box;
   @media (--pc-viewport) {
+  }
+  & .box {
+    width: 100%;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    height: 80px;
-    padding: 0px 45px;
+    flex-direction: column;
+    @apply --container;
+    @media (--pc-viewport) {
+      flex-direction: row;
+      height: 80px;
+      padding: 0px 45px;
+    }
   }
   & .left {
-    height: 100%;
+    width: 100%;
+    height: 64px;
     display: flex;
     align-items: center;
     justify-content: center;
     position: relative;
+    @media (--pc-viewport) {
+      width: auto;
+    }
   }
   & .desktop {
     display: none;
@@ -70,11 +89,28 @@ export default {
     @media (--pc-viewport) {
       display: none;
     }
+    &:active {
+      background-color: var(--green2);
+    }
+    &.active {
+      & > div {
+        background-color: transparent;
+        &:before {
+          width: 30px;
+          transform: rotate(45deg) translate3d(6px, 6px, 0px);
+        }
+        &:after {
+          width: 30px;
+          transform: rotate(-45deg) translate3d(6px, -6px, 0px);
+        }
+      }
+    }
     & > div {
       width: 30px;
       height: 2px;
       background-color: var(--white);
       margin-top: 14px;
+      transition: background-color 0.2s;
       &:before {
         content: '';
         display: block;
@@ -84,6 +120,7 @@ export default {
         position: absolute;
         top: 15px;
         right: 10px;
+        transition: transform 0.2s;
       }
       &:after {
         content: '';
@@ -94,19 +131,31 @@ export default {
         position: absolute;
         bottom: 15px;
         right: 10px;
+        transition: transform 0.2s;
       }
     }
   }
 }
 .nav {
+  width: 100%;
   display: none;
   flex-direction: column;
   align-items: center;
   background-color: var(--white);
-  position: relative;
+  position: absolute;
+  top: 64px;
   z-index: 1;
+  border-bottom: solid 1px var(--gray5);
   @media (--pc-viewport) {
+    width: auto;
+    display: flex;
     flex-direction: row;
+    border-bottom: none;
+    position: relative;
+    top: 0px;
+  }
+  &.active {
+    display: flex;
   }
   & a {
     display: block;
@@ -125,7 +174,12 @@ export default {
       }
     }
     &:hover {
-      color: var(--green3);
+      @media (hover: hover) {
+        color: var(--green3);
+      }
+    }
+    &:active {
+      color: var(--gray2);
     }
     &.router-link-exact-active {
       color: var(--green3);

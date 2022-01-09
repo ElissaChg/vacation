@@ -6,6 +6,14 @@ export default {
     common_isLoading() {
       return this.$store.getters.isLoading
     },
+    common_activeNav: {
+      set(val) {
+        this.$store.commit('activeNav', val)
+      },
+      get() {
+        return this.$store.state.activeNav
+      },
+    },
   },
   methods: {
     common_loading(val) {

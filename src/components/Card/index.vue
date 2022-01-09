@@ -45,7 +45,9 @@ export default {
       transform: scale(1);
       transition: transform 0.2s;
       &:hover {
-        transform: scale(1.08);
+        @media (hover: hover) {
+          transform: scale(1.08);
+        }
       }
     }
   }
