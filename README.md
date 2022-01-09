@@ -1,17 +1,26 @@
 # vacation
 
+vue2&RWD 專案
+
 開發
 
-```
+```shell
+# 啟動 node
+yarn app
+
+# 本機開發
 yarn dev
 ```
 
-postCSS 有幾個套件需要固定版本才不會報錯誤
+https://localhost:8080
 
-| 套件名稱              | 版本號 |
-| --------------------- | ------ |
-| postcss-css-variables | 0.17.0 |
-| postcss-custom-media  | 7.0.8  |
-| postcss-import        | 12.0.1 |
-| postcss-preset-env    | 6.7.0  |
+## https 設定(本機)
 
+1. 安裝 [mkcert](https://github.com/FiloSottile/mkcert) 工具並產生 SSL 憑證
+
+2. 新增 `.env.local`
+
+```
+SSL_CERT_FILE=<憑證位置>
+SSL_KEY_FILE=<憑證key位置>
+```

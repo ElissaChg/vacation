@@ -1,5 +1,5 @@
 <template>
-  <!-- 這個格式有問題 缺少 fill -->
+  <!-- 這個格式有問題 -->
   <svg
     :width="size"
     :height="size"

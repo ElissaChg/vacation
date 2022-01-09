@@ -1,3 +1,6 @@
+@custom-media --s-viewport (min-width: 600px);
+@custom-media --pc-viewport (min-width: 900px);
+@custom-media --pc-m-viewport (min-width: 1366px);
 :root {
   --white: #fff;
   --black: #000;
@@ -18,14 +21,14 @@
   --text3: 18px;
   --text4: 20px;
   --text5: 22px;
-  --text6: 28px;
-  --text7: 36px;
-  --text8: 48px;
+  --text6: 24px;
+  --text7: 28px;
+  --text8: 36px;
+  --text9: 48px;
   --container {
     max-width: 1200px;
-    width: 100%;
     margin: 0px auto;
-    padding: 0px 45px;
+    padding: 0px 15px;
     box-sizing: border-box;
   }
   --scroll {
@@ -37,5 +40,14 @@
     &::-webkit-scrollbar-thumb {
       background-color: #7f977b;
     }
+  }
+  --text-many {
+    white-space: pre-line;
+    word-break: break-word;
+  }
+  --text-break {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
   }
 }

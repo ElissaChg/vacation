@@ -7,7 +7,7 @@
           <div>讓我們更親近這片土地</div>
         </h2>
         <h3>
-          <Icon icon="i-sport" color="#E0DA48" size="24" />
+          <Icon icon="i-spot" color="#E0DA48" size="24" />
           <span>台灣旅遊景點導覽 Taiwan Travel Guide</span>
         </h3>
       </div>
@@ -40,23 +40,39 @@ export default {
 <style lang="postcss" scoped>
 @import 'val.postcss';
 .heroimg {
-  padding: 82px 0px 36px 0px;
+  padding: 10px 0px 24px 0px;
+  @media (--pc-viewport) {
+    padding: 82px 0px 36px 0px;
+  }
 }
 .section {
   display: flex;
   align-items: center;
+  flex-direction: column;
   justify-content: space-between;
-  padding: 0px 95px 60px 95px;
   box-sizing: border-box;
+  @media (--pc-viewport) {
+    flex-direction: row;
+    padding: 0px 95px 60px 95px;
+  }
 }
 .info {
+  padding-bottom: 35px;
+  @media (--pc-viewport) {
+    padding-bottom: 0px;
+  }
   & h2 {
-    font-size: var(--text8);
+    font-size: var(--text7);
     font-weight: 300;
     color: var(--gray2);
-    line-height: 70px;
+    line-height: 40px;
     margin: 0px;
-    padding-bottom: 17px;
+    padding-bottom: 14px;
+    @media (--pc-viewport) {
+      font-size: var(--text9);
+      line-height: 70px;
+      padding-bottom: 17px;
+    }
     & span {
       border-bottom: 2px solid var(--green4);
     }
@@ -64,13 +80,23 @@ export default {
   & h3 {
     display: flex;
     align-items: center;
-    font-size: var(--text4);
+    font-size: var(--text1);
     font-weight: 400;
     color: var(--gray3);
     margin: 0px;
+    @media (--pc-viewport) {
+      font-size: var(--text4);
+    }
+    & span {
+      padding-left: 6px;
+    }
   }
 }
 .action {
+  padding-bottom: 38px;
+  @media (--pc-viewport) {
+    padding-bottom: 0px;
+  }
   & .label {
     width: 350px;
     height: 50px;
@@ -89,7 +115,7 @@ export default {
     height: 50px;
     line-height: 50px;
     font-size: var(--text2);
-    color: var(--green1);
+    color: var(--gray1);
     font-weight: 400;
     border: solid 1px var(--gray5);
     border-radius: 5px;

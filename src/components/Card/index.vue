@@ -30,8 +30,10 @@ export default {
 <style lang="postcss" scoped>
 @import 'val.postcss';
 .card {
-  width: 24.3%;
-  margin-bottom: 12px;
+  width: 100%;
+  @media (--pc-viewport) {
+    width: 24.3%;
+  }
   & .photo {
     width: 255px;
     height: 200px;
@@ -43,15 +45,20 @@ export default {
       transform: scale(1);
       transition: transform 0.2s;
       &:hover {
-        transform: scale(1.08);
+        @media (hover: hover) {
+          transform: scale(1.08);
+        }
       }
     }
   }
   & .title {
-    font-size: var(--text5);
+    font-size: var(--text3);
     font-weight: 700;
     color: var(--gray1);
     padding-bottom: 6px;
+    @media (--pc-viewport) {
+      font-size: var(--text5);
+    }
   }
 }
 </style>
