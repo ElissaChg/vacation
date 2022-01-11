@@ -3,20 +3,21 @@
     <div class="section">
       <div class="info">
         <h2>
-          探索<span>台灣之美</span>
-          <div>讓我們更親近這片土地</div>
+          {{ $t('pages.home.slogan')[0]
+          }}<span>{{ $t('pages.home.slogan')[1] }}</span>
+          <div>{{ $t('pages.home.slogan')[2] }}</div>
         </h2>
         <h3>
           <Icon icon="i-spot" color="#E0DA48" size="24" />
-          <span>台灣旅遊景點導覽 Taiwan Travel Guide</span>
+          <span>{{ $t('pages.home.sloganTips') }}</span>
         </h3>
       </div>
       <div class="action">
         <div class="label">搜索景點</div>
-        <input type="text" placeholder="你想去哪裡？請輸入關鍵字" />
+        <input type="text" :placeholder="$t('pages.home.searchPlaceholder')" />
         <div class="submit">
           <Icon icon="i-search" color="#fff" size="30" />
-          <span>搜尋</span>
+          <span>{{ $t('pages.home.search') }}</span>
         </div>
       </div>
     </div>

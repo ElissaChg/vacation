@@ -15,9 +15,11 @@
         </div>
       </div>
       <div class="nav" :class="[common_activeNav ? 'active' : '']">
-        <router-link to="/about">探索景點</router-link>
-        <router-link to="/about">節慶活動</router-link>
-        <router-link to="/about">品嘗美食</router-link>
+        <router-link to="/about">{{ $t('components.nav.scenic') }}</router-link>
+        <router-link to="/about">{{
+          $t('components.nav.activity')
+        }}</router-link>
+        <router-link to="/about">{{ $t('components.nav.food') }}</router-link>
       </div>
     </div>
   </div>
