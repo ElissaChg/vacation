@@ -5,7 +5,7 @@
       <SectionTitle title="近期活動" link="/about" />
       <div class="row">
         <Activity
-          v-for="activity in scenicSpot_activity"
+          v-for="activity in spot_topActivity"
           :key="activity.ActivityID"
           :item="activity"
         />
@@ -27,7 +27,7 @@
 </template>
 
 <script>
-import scenicSpotDelegate from '@/delegate/scenicSpotDelegate'
+import spotDelegate from '@/delegate/spotDelegate'
 import HeroImg from '@/components/HeroImg'
 import SectionTitle from '@/components/SectionTitle'
 import Activity from '@/components/Activity'
@@ -41,9 +41,16 @@ export default {
     Activity,
     Card,
   },
-  mixins: [scenicSpotDelegate],
+  mixins: [spotDelegate],
+  methods: {
+    getActivity() {
+      const _params =
+        '$filter=Picture/PictureUrl1 ne null&$orderby=StartTime desc&$top=4&$format=JSON'
+      this.spot_getActivity(_params)
+    },
+  },
   mounted() {
-    this.scenicSpot_getActivity(4)
+    this.getActivity()
   },
 }
 </script>

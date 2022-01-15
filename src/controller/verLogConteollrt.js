@@ -3,8 +3,8 @@ export default {
     common_config(val) {
       if (val) {
         console.info(
-          `%c ${val.name} v${val.version}`,
-          `background: #58B2DC; color: #fff`
+          `%c${val.name} v${val.version}`,
+          `background: #65895f; color: #fff`
         )
       }
     },

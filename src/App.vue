@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <transition name="fade">
-      <Header @open="openNav" v-if="!common_isLoading" />
+      <Header @on-click="openNav" v-if="!common_isLoading" />
     </transition>
     <transition name="fade">
       <router-view v-if="!common_isLoading" />

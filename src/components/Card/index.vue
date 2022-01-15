@@ -1,12 +1,17 @@
 <template>
-  <div class="card">
-    <div class="photo">
-      <router-link :to="link">
-        <img src="https://fakeimg.pl/255x200/" alt="" />
-      </router-link>
-    </div>
-    <div class="title">龜山島牛奶海</div>
-    <Location text="南投縣" />
+  <div class="card" v-if="item">
+    <router-link :to="link">
+      <div class="photo" :class="[photo ? '' : 'no']">
+        <div
+          class="img"
+          :style="{ 'background-image': `url('${photo}')` }"
+          v-if="photo"
+        ></div>
+        <div class="icon" v-else></div>
+      </div>
+      <div class="title">{{ item.ActivityName }}</div>
+      <Location :text="item.Location" />
+    </router-link>
   </div>
 </template>
 
@@ -16,6 +21,10 @@ import Location from '@/components/ui/Location'
 export default {
   name: 'Card',
   props: {
+    item: {
+      type: Object,
+      default: null,
+    },
     link: {
       type: String,
       default: '',
@@ -24,38 +33,66 @@ export default {
   components: {
     Location,
   },
+  computed: {
+    photo() {
+      return (this.item.Picture && this.item.Picture.PictureUrl1) || ''
+    },
+  },
 }
 </script>
 
 <style lang="postcss" scoped>
 @import 'val.postcss';
 .card {
-  width: 100%;
-  @media (--pc-viewport) {
-    width: 24.3%;
-  }
-  & .photo {
-    width: 255px;
-    height: 200px;
-    border-radius: 20px;
-    overflow: hidden;
-    margin-bottom: 10px;
-    & a {
-      display: block;
-      transform: scale(1);
-      transition: transform 0.2s;
-      &:hover {
-        @media (hover: hover) {
-          transform: scale(1.08);
+  & > a {
+    display: block;
+    text-decoration: none;
+    &:hover {
+      & .photo {
+        & .img,
+        & .icon {
+          @media (hover: hover) {
+            transform: scale(1.08);
+          }
         }
       }
     }
   }
+  & .photo {
+    border-radius: 20px;
+    overflow: hidden;
+    margin-bottom: 10px;
+    &.no {
+      background-color: var(--green3);
+      opacity: 0.4;
+    }
+    & .img {
+      width: 255px;
+      height: 200px;
+      background-position: center center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      transform: scale(1);
+      transition: transform 0.2s;
+    }
+  }
+  & .icon {
+    width: 100%;
+    height: 200px;
+    background-image: url('/img/noimg.png');
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: 50px 40px;
+    transform: scale(1);
+    transition: transform 0.2s;
+  }
   & .title {
+    width: 100%;
     font-size: var(--text3);
     font-weight: 700;
     color: var(--gray1);
     padding-bottom: 6px;
+    @apply --text-break;
     @media (--pc-viewport) {
       font-size: var(--text5);
     }

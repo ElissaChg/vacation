@@ -4,6 +4,7 @@
 
 <script>
 import i_arrow from './svg/I-arrow'
+import i_down from './svg/I-down'
 import i_search from './svg/I-search'
 import i_spot from './svg/I-spot'
 
@@ -26,6 +27,7 @@ export default {
     'i-arrow': i_arrow,
     'i-search': i_search,
     'i-spot': i_spot,
+    'i-down': i_down,
   },
 }
 </script>
