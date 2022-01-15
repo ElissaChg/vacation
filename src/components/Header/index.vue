@@ -9,17 +9,17 @@
         <div
           class="menu"
           :class="[common_activeNav ? 'active' : '']"
-          @pointerup.stop="$emit('open')"
+          @pointerup.stop="$emit('on-click')"
         >
           <div></div>
         </div>
       </div>
       <div class="nav" :class="[common_activeNav ? 'active' : '']">
-        <router-link to="/about">{{ $t('components.nav.scenic') }}</router-link>
-        <router-link to="/about">{{
+        <!-- <router-link to="/about">{{ $t('components.nav.scenicSpot') }}</router-link> -->
+        <router-link to="/activity">{{
           $t('components.nav.activity')
         }}</router-link>
-        <router-link to="/about">{{ $t('components.nav.food') }}</router-link>
+        <!-- <router-link to="/about">{{ $t('components.nav.food') }}</router-link> -->
       </div>
     </div>
   </div>

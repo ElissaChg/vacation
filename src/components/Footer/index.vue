@@ -1,5 +1,7 @@
 <template>
-  <div class="footer"><div>#The F2E 3rd Week01 #Breakfast</div></div>
+  <div class="footer">
+    <div>#The F2E 3rd Week01 # Design:Breakfast & Code:Elissa</div>
+  </div>
 </template>
 
 <script>

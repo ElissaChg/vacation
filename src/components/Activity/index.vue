@@ -1,5 +1,5 @@
 <template>
-  <div class="activity">
+  <div class="activity" v-if="item">
     <router-link :to="link">
       <div class="photo" :class="[photo ? '' : 'no']">
         <div
@@ -81,10 +81,10 @@ export default {
       border: 1px solid var(--gray5);
     }
     &:hover {
-      @media (hover: hover) {
-        & .photo {
-          & .img,
-          & .icon {
+      & .photo {
+        & .img,
+        & .icon {
+          @media (hover: hover) {
             transform: scale(1.1);
           }
         }

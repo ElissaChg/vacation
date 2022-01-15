@@ -27,7 +27,7 @@ module.exports = {
   pages: {
     index: {
       entry: 'src/main.js',
-      title: 'ScenicSpot',
+      title: '台灣走走',
     },
   },
 }

@@ -14,11 +14,11 @@
       </div>
       <div class="action">
         <div class="label">搜索景點</div>
-        <input type="text" :placeholder="$t('pages.home.searchPlaceholder')" />
-        <div class="submit">
-          <Icon icon="i-search" color="#fff" size="30" />
-          <span>{{ $t('pages.home.search') }}</span>
-        </div>
+        <input
+          type="text"
+          :placeholder="$t('components.searchBar.scenicSpot')"
+        />
+        <Search />
       </div>
     </div>
     <div class="slider">
@@ -29,11 +29,13 @@
 
 <script>
 import Icon from '@/components/Icon'
+import Search from '@/components/SearchBar/Search'
 
 export default {
   name: 'HeroImg',
   components: {
     Icon,
+    Search,
   },
 }
 </script>
@@ -113,41 +115,10 @@ export default {
   }
   & > input {
     width: 350px;
-    height: 50px;
-    line-height: 50px;
-    font-size: var(--text2);
-    color: var(--gray1);
-    font-weight: 400;
-    border: solid 1px var(--gray5);
-    border-radius: 5px;
-    background-color: var(--gray6);
-    outline: none;
-    padding: 0px 30px;
-    box-sizing: border-box;
-    margin-bottom: 7px;
-    user-select: text;
+    @apply --input;
     &::placeholder {
       color: var(--gray4);
     }
-  }
-}
-.submit {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 350px;
-  height: 50px;
-  line-height: 50px;
-  font-size: var(--text2);
-  font-weight: 700;
-  color: var(--white);
-  background-color: var(--green3);
-  border-radius: 6px;
-  cursor: pointer;
-  & span {
-    letter-spacing: 2rem;
-    padding-left: 10px;
-    box-sizing: border-box;
   }
 }
 .slider {

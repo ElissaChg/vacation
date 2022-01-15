@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import scenicSpot from '@/store/scenicSpot'
+import spot from '@/store/spot'
 Vue.use(Vuex)
 
 export default new Vuex.Store({
@@ -14,6 +14,7 @@ export default new Vuex.Store({
       state.config = val
     },
     loadingState(state, val) {
+      console.log(val, 'val')
       state.loadingState = val
     },
     activeNav(state, val) {
@@ -31,6 +32,6 @@ export default new Vuex.Store({
     },
   },
   modules: {
-    scenicSpot,
+    spot,
   },
 })
