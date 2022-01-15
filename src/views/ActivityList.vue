@@ -67,13 +67,14 @@ export default {
       return ACTIVITY
     },
     searchState() {
+      const _params = '$format=JSON'
       if (this.searchType) {
         if (this.searchKey) {
-          return `$filter=(contains(Name, '${this.searchKey}') or contains(Class1, '${this.searchType}') or contains(Class2, '${this.searchType}')) and Picture/PictureUrl1 ne null`
+          return `$filter=(contains(ActivityName,'${this.searchKey}') or contains(Description,'${this.searchKey}') or contains(Address,'${this.searchKey}')) and (contains(Class1, '${this.searchType}') or contains(Class2, '${this.searchType}')) and Picture/PictureUrl1 ne null&${_params}`
         }
-        return `$filter=contains(Class1, '${this.searchType}') or contains(Class2, '${this.searchType}') and Picture/PictureUrl1 ne null`
+        return `$filter=contains(Class1, '${this.searchType}') or contains(Class2, '${this.searchType}') and Picture/PictureUrl1 ne null&${_params}`
       }
-      return '$filter=Picture/PictureUrl1 ne null'
+      return `$filter=Picture/PictureUrl1 ne null&${_params}`
     },
   },
   watch: {

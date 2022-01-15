@@ -1,11 +1,13 @@
 <template>
   <div class="card" v-if="item">
     <router-link :to="link">
-      <div class="photo">
+      <div class="photo" :class="[photo ? '' : 'no']">
         <div
           class="img"
           :style="{ 'background-image': `url('${photo}')` }"
+          v-if="photo"
         ></div>
+        <div class="icon" v-else></div>
       </div>
       <div class="title">{{ item.ActivityName }}</div>
       <Location :text="item.Location" />
@@ -47,7 +49,8 @@ export default {
     text-decoration: none;
     &:hover {
       & .photo {
-        & .img {
+        & .img,
+        & .icon {
           @media (hover: hover) {
             transform: scale(1.08);
           }
@@ -59,6 +62,10 @@ export default {
     border-radius: 20px;
     overflow: hidden;
     margin-bottom: 10px;
+    &.no {
+      background-color: var(--green3);
+      opacity: 0.4;
+    }
     & .img {
       width: 255px;
       height: 200px;
@@ -68,6 +75,16 @@ export default {
       transform: scale(1);
       transition: transform 0.2s;
     }
+  }
+  & .icon {
+    width: 100%;
+    height: 200px;
+    background-image: url('/img/noimg.png');
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: 50px 40px;
+    transform: scale(1);
+    transition: transform 0.2s;
   }
   & .title {
     width: 100%;

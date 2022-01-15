@@ -45,7 +45,7 @@ export default {
   methods: {
     getActivity() {
       const _params =
-        '$filter=Picture/PictureUrl1 ne null&$orderby=StartTime desc&$top=4'
+        '$filter=Picture/PictureUrl1 ne null&$orderby=StartTime desc&$top=4&$format=JSON'
       this.spot_getActivity(_params)
     },
   },

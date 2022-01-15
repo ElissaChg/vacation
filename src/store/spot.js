@@ -37,7 +37,6 @@ export default {
         apiGet_getActivity(params)
           .then((res) => {
             if (res && res.data) {
-              console.log(res.data, 22)
               commit('activity', res.data)
             }
           })
@@ -48,7 +47,6 @@ export default {
         apiGet_getActivityCity(city, params)
           .then((res) => {
             if (res && res.data) {
-              console.log(res.data, 33)
               commit('activity', res.data)
             }
           })
