@@ -16,9 +16,7 @@ https://localhost:8080
 
 ## https 設定(本機)
 
-1. 安裝 [mkcert github](https://github.com/FiloSottile/mkcert) 工具並產生 SSL 憑證
-
-[簡易安裝文檔](https://github.com/FiloSottile/mkcert)
+1. 安裝 [mkcert github](https://github.com/FiloSottile/mkcert)([簡易安裝文檔](https://hackmd.io/@syue1018/Skfw63w-w)) 工具並產生 SSL 憑證
 
 2. 新增 `.env.local`
 
