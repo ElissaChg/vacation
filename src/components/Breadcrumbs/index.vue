@@ -24,6 +24,9 @@ export default {
 
 <style lang="postcss" scoped>
 .breadcrumbs {
-  padding: 60px 0px 40px 0px;
+  padding: 24px 0px 16px 0px;
+  @media (--pc-viewport) {
+    padding: 60px 0px 40px 0px;
+  }
 }
 </style>

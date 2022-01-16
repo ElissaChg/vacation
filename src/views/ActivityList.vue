@@ -5,25 +5,46 @@
     </Breadcrumbs>
     <div class="bar">
       <SelectUi :options="city" v-model="searchCity" />
-      <SelectUi :options="activity" v-model="searchType" />
-      <SearchBar>
-        <input
-          class="input"
-          type="text"
-          :placeholder="$t('components.searchBar.activity')"
-          v-model.trim="searchKey"
-        />
-        <Search :disabled="!canSubmit" @on-click="search" />
-      </SearchBar>
+      <SelectUi :options="activity" v-model="searchType" :value="searchType" />
+      <input
+        class="input"
+        type="text"
+        :placeholder="$t('components.searchBar.activity')"
+        v-model.trim="searchKey"
+      />
+      <Search :disabled="!canSubmit" @on-click="search" />
     </div>
     <div class="section" v-if="spot_activity">
-      <div class="title">{{ $t('components.searchList.result') }}</div>
-      <div class="row">
-        <Card
+      <div class="title">
+        <div>{{ $t('components.searchList.result') }}</div>
+        <div class="result">
+          {{ $t('components.searchList.total') }}<span>{{ count }}</span
+          >{{ $t('components.searchList.unit') }}
+        </div>
+      </div>
+      <div class="row" v-if="spot_activity && spot_activity.length > 0">
+        <div
+          class="cardbox"
           v-for="item in spot_activity"
           :key="item.ActivityID"
-          :item="item"
-        />
+        >
+          <Card :item="item" />
+        </div>
+      </div>
+      <div v-else>
+        <NoData />
+      </div>
+    </div>
+    <div class="section" v-else>
+      <div class="title">{{ $t('components.searchList.popularType') }}</div>
+      <div class="row">
+        <div class="typebox" v-for="(item, idx) in type" :key="idx">
+          <TypeCard
+            :text="item.label"
+            :img="item.img"
+            @on-click="setType(item.value)"
+          />
+        </div>
       </div>
     </div>
   </div>
@@ -34,21 +55,24 @@ import commonDelegate from '@/delegate/commonDelegate'
 import spotDelegate from '@/delegate/spotDelegate'
 import Breadcrumbs from '@/components/Breadcrumbs'
 import NavMenu from '@/components/Breadcrumbs/NavMenu'
-import SearchBar from '@/components/SearchBar'
-import Search from '@/components/SearchBar/Search'
+import Search from '@/components/Search'
 import SelectUi from '@/components/ui/SelectUi'
 import Card from '@/components/Card'
+import TypeCard from '@/components/TypeCard'
+import NoData from '@/components/ui/NoData'
 import { CITY, ACTIVITY } from '@/tools/searchType'
+import Lazy from 'lazy.js'
 
 export default {
   name: 'ActivityList',
   components: {
     Breadcrumbs,
     NavMenu,
-    SearchBar,
     Search,
     SelectUi,
     Card,
+    TypeCard,
+    NoData,
   },
   mixins: [commonDelegate, spotDelegate],
   data() {
@@ -65,6 +89,14 @@ export default {
     },
     activity() {
       return ACTIVITY
+    },
+    type() {
+      return Lazy(ACTIVITY)
+        .filter((el) => el.img !== '')
+        .toArray()
+    },
+    count() {
+      return this.spot_activity && this.spot_activity.length
     },
     searchState() {
       const _params = '$format=JSON'
@@ -89,6 +121,10 @@ export default {
       this.canSubmit = false
       this.spot_getActivityCity(this.searchCity, this.searchState)
     },
+    setType(val) {
+      this.searchType = val
+      this.search()
+    },
   },
 }
 </script>
@@ -104,38 +140,93 @@ export default {
 .bar {
   display: flex;
   align-items: center;
-  padding-bottom: 60px;
-  & .select-ui + .select-ui {
-    margin-left: 15px;
+  flex-wrap: wrap;
+  margin-bottom: 24px;
+  @media (--pc-viewport) {
+    flex-wrap: nowrap;
+    margin-bottom: 60px;
+  }
+  & .select-ui {
+    margin-bottom: 7px;
+    @media (--pc-viewport) {
+      flex: 0 1 240px;
+      margin-bottom: 0px;
+    }
+    & + .select-ui {
+      @media (--pc-viewport) {
+        margin-left: 15px;
+      }
+    }
   }
   & .input {
-    width: 370px;
     @apply --input;
-  }
-  & .searchbar {
-    margin-left: 15px;
+    @media (--pc-viewport) {
+      flex: 0 1 375px;
+      margin-left: 15px;
+    }
   }
   & .search {
-    width: 175px;
-    margin-left: 15px;
+    @media (--pc-viewport) {
+      flex: 0 0 210px;
+      margin-left: 15px;
+    }
   }
 }
 .section {
+  margin-bottom: 72px;
   & .title {
-    font-size: var(--text8);
+    font-size: var(--text6);
     font-weight: 300;
     color: var(--gray2);
-    padding-bottom: 15px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: flex-end;
+    @media (--pc-viewport) {
+      font-size: var(--text8);
+      margin-bottom: 15px;
+    }
+    & .result {
+      font-size: var(--text3);
+      font-weight: 400;
+      color: var(--gray3);
+      padding-left: 8px;
+      & span {
+        color: var(--brown);
+        padding: 0px 5px;
+      }
+    }
   }
   & .row {
     display: flex;
     align-items: center;
-    justify-content: space-between;
     flex-wrap: wrap;
+    margin-left: -15px;
+    margin-right: -15px;
   }
-  & .card {
-    width: 22.97%;
-    padding-bottom: 36px;
+  & .typebox {
+    flex: 0 0 50%;
+    padding: 0px 15px 12px 15px;
+    box-sizing: border-box;
+    @media (--pc-viewport) {
+      flex: 0 0 25%;
+      max-width: 25%;
+    }
+  }
+  & .cardbox {
+    width: 100%;
+    margin: 0px 15px 20px 15px;
+    @media (--s-viewport) {
+      flex: 0 0 50%;
+      padding: 0px 15px;
+      margin: 0px 0px 20px 0px;
+      max-width: 50%;
+      box-sizing: border-box;
+    }
+    @media (--pc-viewport) {
+      flex: 0 0 25%;
+      padding: 0px 15px 36px 15px;
+      max-width: 25%;
+    }
   }
 }
 </style>

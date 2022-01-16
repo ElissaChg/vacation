@@ -23,9 +23,12 @@ export default {
 .menu {
   display: inline;
   text-decoration: none;
-  font-size: var(--text2);
+  font-size: var(--text1);
   font-weight: 400;
   color: var(--green1);
+  @media (--pc-viewport) {
+    font-size: var(--text2);
+  }
   &:hover {
     @media (hover: hover) {
       color: var(--green3);

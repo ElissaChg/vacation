@@ -29,7 +29,7 @@
 
 <script>
 import Icon from '@/components/Icon'
-import Search from '@/components/SearchBar/Search'
+import Search from '@/components/Search'
 
 export default {
   name: 'HeroImg',

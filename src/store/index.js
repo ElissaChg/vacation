@@ -14,7 +14,6 @@ export default new Vuex.Store({
       state.config = val
     },
     loadingState(state, val) {
-      console.log(val, 'val')
       state.loadingState = val
     },
     activeNav(state, val) {

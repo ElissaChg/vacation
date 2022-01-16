@@ -15,7 +15,7 @@
         <div class="bottom">
           <Location :text="item.Location" />
           <div class="link">
-            <span>詳細介紹</span>
+            <span>{{ $t('pages.home.more') }}</span>
             <Icon icon="i-arrow" color="#7f977b" />
           </div>
         </div>
@@ -59,7 +59,7 @@ export default {
 <style lang="postcss" scoped>
 @import 'val.postcss';
 .activity {
-  & >>> .location {
+  & .location {
     @media (--pc-viewport) {
       width: calc(100% - 85px);
     }
@@ -85,7 +85,7 @@ export default {
         & .img,
         & .icon {
           @media (hover: hover) {
-            transform: scale(1.1);
+            transform: scale(1.08);
           }
         }
       }
