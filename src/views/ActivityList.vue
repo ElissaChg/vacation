@@ -14,7 +14,28 @@
       />
       <Search :disabled="!canSubmit" @on-click="search" />
     </div>
-    <div class="section" v-if="!spot_activity">
+    <div class="section" v-if="spot_activity">
+      <div class="title">
+        <div>{{ $t('components.searchList.result') }}</div>
+        <div class="result">
+          {{ $t('components.searchList.total') }}<span>{{ count }}</span
+          >{{ $t('components.searchList.unit') }}
+        </div>
+      </div>
+      <div class="row" v-if="spot_activity && spot_activity.length > 0">
+        <div
+          class="cardbox"
+          v-for="item in spot_activity"
+          :key="item.ActivityID"
+        >
+          <Card :item="item" />
+        </div>
+      </div>
+      <div v-else>
+        <NoData />
+      </div>
+    </div>
+    <div class="section" v-else>
       <div class="title">{{ $t('components.searchList.popularType') }}</div>
       <div class="row">
         <div class="typebox" v-for="(item, idx) in type" :key="idx">
@@ -23,18 +44,6 @@
             :img="item.img"
             @on-click="setType(item.value)"
           />
-        </div>
-      </div>
-    </div>
-    <div class="section" v-if="spot_activity">
-      <div class="title">{{ $t('components.searchList.result') }}</div>
-      <div class="row">
-        <div
-          class="cardbox"
-          v-for="item in spot_activity"
-          :key="item.ActivityID"
-        >
-          <Card :item="item" />
         </div>
       </div>
     </div>
@@ -50,6 +59,7 @@ import Search from '@/components/Search'
 import SelectUi from '@/components/ui/SelectUi'
 import Card from '@/components/Card'
 import TypeCard from '@/components/TypeCard'
+import NoData from '@/components/ui/NoData'
 import { CITY, ACTIVITY } from '@/tools/searchType'
 import Lazy from 'lazy.js'
 
@@ -62,6 +72,7 @@ export default {
     SelectUi,
     Card,
     TypeCard,
+    NoData,
   },
   mixins: [commonDelegate, spotDelegate],
   data() {
@@ -83,6 +94,9 @@ export default {
       return Lazy(ACTIVITY)
         .filter((el) => el.img !== '')
         .toArray()
+    },
+    count() {
+      return this.spot_activity && this.spot_activity.length
     },
     searchState() {
       const _params = '$format=JSON'
@@ -109,6 +123,7 @@ export default {
     },
     setType(val) {
       this.searchType = val
+      this.search()
     },
   },
 }
@@ -158,15 +173,27 @@ export default {
   }
 }
 .section {
-  margin-bottom: 60px;
+  margin-bottom: 72px;
   & .title {
     font-size: var(--text6);
     font-weight: 300;
     color: var(--gray2);
     margin-bottom: 10px;
+    display: flex;
+    align-items: flex-end;
     @media (--pc-viewport) {
       font-size: var(--text8);
       margin-bottom: 15px;
+    }
+    & .result {
+      font-size: var(--text3);
+      font-weight: 400;
+      color: var(--gray3);
+      padding-left: 8px;
+      & span {
+        color: var(--brown);
+        padding: 0px 5px;
+      }
     }
   }
   & .row {

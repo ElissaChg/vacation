@@ -18,7 +18,9 @@
     "searchList": {
       "noData": "目前查無資料\n請重新搜尋",
       "popularType": "熱門主題",
-      "result": "搜尋結果"
+      "result": "搜尋結果",
+      "total": "共有",
+      "unit": "筆"
     }
   },
   "pages": {
