@@ -2,7 +2,7 @@
   <div class="container">
     <HeroImg />
     <div class="section">
-      <SectionTitle title="近期活動" link="/about" />
+      <SectionTitle title="近期活動" link="/activity" />
       <div class="row">
         <Activity
           v-for="activity in spot_topActivity"

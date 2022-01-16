@@ -1,18 +1,16 @@
 <template>
-  <div class="card" v-if="item">
-    <router-link :to="link">
-      <div class="photo" :class="[photo ? '' : 'no']">
-        <div
-          class="img"
-          :style="{ 'background-image': `url('${photo}')` }"
-          v-if="photo"
-        ></div>
-        <div class="icon" v-else></div>
-      </div>
-      <div class="title">{{ item.ActivityName }}</div>
-      <Location :text="item.Location" />
-    </router-link>
-  </div>
+  <router-link :to="link" class="card" v-if="item">
+    <div class="photo" :class="[photo ? '' : 'no']">
+      <div
+        class="img"
+        :style="{ 'background-image': `url('${photo}')` }"
+        v-if="photo"
+      ></div>
+      <div class="icon" v-else></div>
+    </div>
+    <div class="title">{{ item.ActivityName }}</div>
+    <Location :text="item.Location" />
+  </router-link>
 </template>
 
 <script>
@@ -44,16 +42,15 @@ export default {
 <style lang="postcss" scoped>
 @import 'val.postcss';
 .card {
-  & > a {
-    display: block;
-    text-decoration: none;
-    &:hover {
-      & .photo {
-        & .img,
-        & .icon {
-          @media (hover: hover) {
-            transform: scale(1.08);
-          }
+  display: block;
+  text-decoration: none;
+  width: 100%;
+  &:hover {
+    & .photo {
+      & .img,
+      & .icon {
+        @media (hover: hover) {
+          transform: scale(1.08);
         }
       }
     }
@@ -67,7 +64,7 @@ export default {
       opacity: 0.4;
     }
     & .img {
-      width: 255px;
+      width: 100%;
       height: 200px;
       background-position: center center;
       background-repeat: no-repeat;

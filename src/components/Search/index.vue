@@ -2,7 +2,7 @@
   <div
     class="search"
     :class="[disabled ? 'disabled' : '']"
-    @pointerup.stop="$emit('on-click')"
+    @pointerup.stop="onClick"
   >
     <Icon icon="i-search" color="#fff" size="30" />
     <span>{{ $t('components.searchBar.search') }}</span>
@@ -23,6 +23,12 @@ export default {
   components: {
     Icon,
   },
+  methods: {
+    onClick() {
+      if (this.disabled) return
+      this.$emit('on-click')
+    },
+  },
 }
 </script>
 
@@ -32,7 +38,7 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 350px;
+  width: 100%;
   height: 50px;
   line-height: 50px;
   font-size: var(--text2);
@@ -41,8 +47,12 @@ export default {
   background-color: var(--green3);
   border-radius: 6px;
   cursor: pointer;
-  @media (hover: hover) {
-    &:hover {
+  margin-top: 7px;
+  @media (--pc-viewport) {
+    margin-top: 0px;
+  }
+  &:hover {
+    @media (hover: hover) {
       background-color: var(--green2);
     }
   }

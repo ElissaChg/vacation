@@ -97,29 +97,36 @@ export const ACTIVITY = [
   {
     value: '',
     label: '全部主題',
+    img: '',
   },
   {
     value: '節慶活動',
     label: '節慶活動',
+    img: '/img/unsplash_qDZ-Xd8dX6w.png',
   },
   {
     value: '自行車活動',
     label: '自行車活動',
+    img: '/img/unsplash_qDBbM9Erwo4.png',
   },
   {
     value: '遊憩活動',
     label: '遊憩活動',
+    img: '/img/Rectangle.png',
   },
   {
     value: '產業文化活動',
     label: '產業文化活動',
+    img: '/img/Rectangle95.png',
   },
   {
     value: '年度活動',
     label: '年度活動',
+    img: '/img/unsplash_kaDrFI9qNrU.png',
   },
   {
-    value: 'Taipei',
+    value: '四季活動',
     label: '四季活動',
+    img: '/img/unsplash_fS0zfcOYa4A.png',
   },
 ]

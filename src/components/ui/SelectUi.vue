@@ -40,6 +40,9 @@ export default {
     selected(val) {
       this.$emit('input', val)
     },
+    value(val) {
+      this.selected = val
+    },
   },
   computed: {
     label() {
@@ -59,7 +62,7 @@ export default {
 <style lang="postcss" scoped>
 @import 'val.postcss';
 .select-ui {
-  width: 240px;
+  width: 100%;
   position: relative;
   & .label {
     width: 100%;

@@ -9,27 +9,41 @@
       "scenicSpot": "探索景點"
     },
     "searchBar": {
-      "city": "全部縣市",
-      "search": "搜尋",
-      "scenicSpot": "你想去哪裡？請輸入關鍵字",
       "activity": "想找有趣的？請輸入關鍵字",
-      "food": "你想吃什麼？請輸入關鍵字"
+      "city": "全部縣市",
+      "food": "你想吃什麼？請輸入關鍵字",
+      "scenicSpot": "你想去哪裡？請輸入關鍵字",
+      "search": "搜尋"
     },
     "searchList": {
       "noData": "目前查無資料\n請重新搜尋",
-      "popularType": "熱門分類",
+      "popularType": "熱門主題",
       "result": "搜尋結果"
     }
   },
   "pages": {
+    "activityList": {
+      "all": "全部主題",
+      "bicycle": "自行車活動",
+      "culture": "產業文化活動",
+      "holiday": "節慶活動",
+      "play": "遊憩活動",
+      "season": "四季活動",
+      "year": "年度活動"
+    },
     "home": {
-      "scenicSpot": "熱門打卡景點",
+      "activity": "近期活動",
       "food": "一再回訪美食",
+      "more": "詳細介紹",
       "moreActivity": "查看更多活動",
       "moreFood": "查看更多美食",
       "moreScenicSpot": "查看更多景點",
-      "activity": "近期活動",
-      "slogan": ["探索", "台灣之美", "讓我們更親近這片土地"],
+      "scenicSpot": "熱門打卡景點",
+      "slogan": [
+        "探索",
+        "台灣之美",
+        "讓我們更親近這片土地"
+      ],
       "sloganTips": "台灣旅遊景點導覽 Taiwan Travel Guide"
     }
   }
