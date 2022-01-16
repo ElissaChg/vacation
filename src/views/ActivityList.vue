@@ -22,15 +22,18 @@
           >{{ $t('components.searchList.unit') }}
         </div>
       </div>
-      <div class="row" v-if="spot_activity && spot_activity.length > 0">
-        <div
-          class="cardbox"
-          v-for="item in spot_activity"
-          :key="item.ActivityID"
-        >
-          <Card :item="item" />
+      <template v-if="spot_activity && spot_activity.length > 0">
+        <div class="row">
+          <div
+            class="cardbox"
+            v-for="item in spot_activity"
+            :key="item.ActivityID"
+          >
+            <Card :item="item" />
+          </div>
         </div>
-      </div>
+        <Pagination :total="count" v-if="false" />
+      </template>
       <div v-else>
         <NoData />
       </div>
@@ -60,6 +63,7 @@ import SelectUi from '@/components/ui/SelectUi'
 import Card from '@/components/Card'
 import TypeCard from '@/components/TypeCard'
 import NoData from '@/components/ui/NoData'
+import Pagination from '@/components/Pagination'
 import { CITY, ACTIVITY } from '@/tools/searchType'
 import Lazy from 'lazy.js'
 
@@ -73,6 +77,7 @@ export default {
     Card,
     TypeCard,
     NoData,
+    Pagination,
   },
   mixins: [commonDelegate, spotDelegate],
   data() {
@@ -186,10 +191,13 @@ export default {
       margin-bottom: 15px;
     }
     & .result {
-      font-size: var(--text3);
+      font-size: var(--text1);
       font-weight: 400;
       color: var(--gray3);
       padding-left: 8px;
+      @media (--pc-viewport) {
+        font-size: var(--text3);
+      }
       & span {
         color: var(--brown);
         padding: 0px 5px;
