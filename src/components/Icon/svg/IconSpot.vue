@@ -16,7 +16,7 @@
 
 <script>
 export default {
-  name: 'I-spot',
+  name: 'IconSpot',
   props: {
     size: {
       type: String,

@@ -18,21 +18,27 @@
       <div class="title">
         <div>{{ $t('components.searchList.result') }}</div>
         <div class="result">
-          {{ $t('components.searchList.total') }}<span>{{ count }}</span
+          {{ $t('components.searchList.total') }}<span>{{ total }}</span
           >{{ $t('components.searchList.unit') }}
         </div>
       </div>
-      <template v-if="spot_activity && spot_activity.length > 0">
+      <template v-if="total > 0">
         <div class="row">
           <div
             class="cardbox"
-            v-for="item in spot_activity"
+            v-for="item in filterActivity"
             :key="item.ActivityID"
           >
             <Card :item="item" />
           </div>
         </div>
-        <Pagination :total="count" v-if="false" />
+        <Pagination
+          :total="total"
+          :perPage="perPage"
+          v-model="numPage"
+          @prev="prevPage"
+          @next="nextPage"
+        />
       </template>
       <div v-else>
         <NoData />
@@ -86,6 +92,9 @@ export default {
       searchCity: '' /*搜尋城市 */,
       searchType: '' /*搜尋活動主題 */,
       canSubmit: true,
+      numPage: 1,
+      perPage: 20,
+      filterActivity: null,
     }
   },
   computed: {
@@ -100,16 +109,16 @@ export default {
         .filter((el) => el.img !== '')
         .toArray()
     },
-    count() {
+    total() {
       return this.spot_activity && this.spot_activity.length
     },
     searchState() {
-      const _params = '$format=JSON'
+      const _params = `$format=JSON`
       if (this.searchType) {
         if (this.searchKey) {
           return `$filter=(contains(ActivityName,'${this.searchKey}') or contains(Description,'${this.searchKey}') or contains(Address,'${this.searchKey}')) and (contains(Class1, '${this.searchType}') or contains(Class2, '${this.searchType}')) and Picture/PictureUrl1 ne null&${_params}`
         }
-        return `$filter=contains(Class1, '${this.searchType}') or contains(Class2, '${this.searchType}') and Picture/PictureUrl1 ne null&${_params}`
+        return `$filter=(contains(Class1, '${this.searchType}') or contains(Class2, '${this.searchType}')) and Picture/PictureUrl1 ne null&${_params}`
       }
       return `$filter=Picture/PictureUrl1 ne null&${_params}`
     },
@@ -118,17 +127,34 @@ export default {
     spot_activity(val) {
       if (val) {
         this.canSubmit = true
+        this.getFilterActivity()
       }
+    },
+    numPage() {
+      this.getFilterActivity()
     },
   },
   methods: {
     search() {
+      this.numPage = 1
       this.canSubmit = false
       this.spot_getActivityCity(this.searchCity, this.searchState)
     },
     setType(val) {
       this.searchType = val
       this.search()
+    },
+    prevPage() {
+      this.numPage -= 1
+    },
+    nextPage() {
+      this.numPage += 1
+    },
+    getFilterActivity() {
+      const _offset = (this.numPage - 1) * this.perPage
+      this.filterActivity = Lazy(this.spot_activity)
+        .slice(_offset, _offset + this.perPage)
+        .toArray()
     },
   },
 }
@@ -232,8 +258,8 @@ export default {
     }
     @media (--pc-viewport) {
       flex: 0 0 25%;
-      padding: 0px 15px 36px 15px;
       max-width: 25%;
+      margin: 0px 0px 36px 0px;
     }
   }
 }

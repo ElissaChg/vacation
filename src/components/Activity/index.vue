@@ -16,7 +16,7 @@
           <Location :text="item.Location" />
           <div class="link">
             <span>{{ $t('pages.home.more') }}</span>
-            <Icon icon="i-arrow" color="#7f977b" />
+            <Icon icon="i-right" color="#7f977b" />
           </div>
         </div>
       </div>

@@ -3,7 +3,7 @@
     <h4>{{ title }}</h4>
     <router-link :to="link">
       <span>查看更多活動</span>
-      <Icon icon="i-arrow" color="#FF725E" />
+      <Icon icon="i-right" color="#FF725E" />
     </router-link>
   </div>
 </template>

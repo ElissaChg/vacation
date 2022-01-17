@@ -20,7 +20,7 @@
 
 <script>
 export default {
-  name: 'I-down',
+  name: 'IconDown',
   props: {
     size: {
       type: String,
