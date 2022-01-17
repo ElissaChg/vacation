@@ -38,6 +38,7 @@
           v-model="numPage"
           @prev="prevPage"
           @next="nextPage"
+          v-if="total > perPage"
         />
       </template>
       <div v-else>
