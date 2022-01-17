@@ -3,10 +3,11 @@
 </template>
 
 <script>
-import i_arrow from './svg/I-arrow'
-import i_down from './svg/I-down'
-import i_search from './svg/I-search'
-import i_spot from './svg/I-spot'
+import IconDown from './svg/IconDown'
+import IconLeft from './svg/IconLeft'
+import IconRight from './svg/IconRight'
+import IconSearch from './svg/IconSearch'
+import IconSpot from './svg/IconSpot'
 
 export default {
   name: 'Icon',
@@ -24,10 +25,11 @@ export default {
     },
   },
   components: {
-    'i-arrow': i_arrow,
-    'i-search': i_search,
-    'i-spot': i_spot,
-    'i-down': i_down,
+    'i-down': IconDown,
+    'i-left': IconLeft,
+    'i-right': IconRight,
+    'i-search': IconSearch,
+    'i-spot': IconSpot,
   },
 }
 </script>

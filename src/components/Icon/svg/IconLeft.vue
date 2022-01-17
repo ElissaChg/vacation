@@ -1,26 +1,22 @@
 <template>
-  <!-- 這個格式有問題 -->
   <svg
     :width="size"
     :height="size"
-    viewBox="0 0 16 16"
+    viewBox="0 0 24 24"
     preserveAspectRatio="xMidYMid meet"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
   >
     <path
-      d="M6 3.5L10 8L6 12.5"
-      :stroke="color"
-      stroke-width="2"
-      stroke-linecap="round"
-      stroke-linejoin="round"
+      d="M15.4554 6.70538C15.8447 7.09466 15.845 7.72569 15.4562 8.11538L11.58 12L15.4562 15.8846C15.845 16.2743 15.8447 16.9053 15.4554 17.2946C15.0658 17.6842 14.4342 17.6842 14.0446 17.2946L8.75003 12L14.0446 6.70538C14.4342 6.31581 15.0658 6.31581 15.4554 6.70538Z"
+      :fill="color"
     />
   </svg>
 </template>
 
 <script>
 export default {
-  name: 'I-arrow',
+  name: 'Iconleft',
   props: {
     size: {
       type: String,
