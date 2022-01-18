@@ -8,13 +8,13 @@
     <PageButton
       :num="idx + 1"
       :active="value === idx + 1"
-      v-for="(item, idx) in page"
+      v-for="(item, idx) in pageSize"
       :key="item"
       @on-click="$emit('input', item)"
     />
     <PageButton
       icon="i-right"
-      :disabled="value === page"
+      :disabled="value === pageSize"
       @on-click="$emit('next')"
     />
   </div>
@@ -40,13 +40,8 @@ export default {
   components: {
     PageButton,
   },
-  data() {
-    return {
-      step: 3,
-    }
-  },
   computed: {
-    page() {
+    pageSize() {
       return Math.ceil(this.total / this.perPage)
     },
   },

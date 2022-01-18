@@ -5,9 +5,13 @@
       <SectionTitle title="近期活動" link="/activity" />
       <div class="row">
         <Activity
-          v-for="activity in spot_topActivity"
-          :key="activity.ActivityID"
-          :item="activity"
+          v-for="item in spot_topActivity"
+          :key="item.ActivityID"
+          :item="item"
+          :link="{
+            name: 'ActivityDetail',
+            params: { id: item.ActivityID },
+          }"
         />
       </div>
     </div>

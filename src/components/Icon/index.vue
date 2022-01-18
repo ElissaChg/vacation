@@ -5,6 +5,7 @@
 <script>
 import IconDown from './svg/IconDown'
 import IconLeft from './svg/IconLeft'
+import IconMore from './svg/IconMore'
 import IconRight from './svg/IconRight'
 import IconSearch from './svg/IconSearch'
 import IconSpot from './svg/IconSpot'
@@ -27,6 +28,7 @@ export default {
   components: {
     'i-down': IconDown,
     'i-left': IconLeft,
+    'i-more': IconMore,
     'i-right': IconRight,
     'i-search': IconSearch,
     'i-spot': IconSpot,

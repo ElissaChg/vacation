@@ -1,7 +1,7 @@
 <template>
   <div class="list">
     <Breadcrumbs>
-      <NavMenu :text="$t('components.nav.activity')" to="/activity" />
+      <NavMenu :text="$t('components.nav.activity')" />
     </Breadcrumbs>
     <div class="bar">
       <SelectUi :options="city" v-model="searchCity" />
@@ -29,7 +29,14 @@
             v-for="item in filterActivity"
             :key="item.ActivityID"
           >
-            <Card :item="item" />
+            <Card
+              :item="item"
+              :link="{
+                name: 'ActivityDetail',
+                params: { id: item.ActivityID },
+              }"
+              @pointerup.native.stop="setActivityDetail(item.ActivityID)"
+            />
           </div>
         </div>
         <Pagination
@@ -38,6 +45,7 @@
           v-model="numPage"
           @prev="prevPage"
           @next="nextPage"
+          v-if="total > perPage"
         />
       </template>
       <div v-else>
@@ -156,6 +164,12 @@ export default {
         .slice(_offset, _offset + this.perPage)
         .toArray()
     },
+    setActivityDetail(id) {
+      this.activityId = id
+    },
+  },
+  beforeDestroy() {
+    this.spot_activity = null
   },
 }
 </script>
