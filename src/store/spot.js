@@ -1,6 +1,8 @@
 import {
   apiGet_getActivity,
   apiGet_getActivityCity,
+  apiGet_getFood,
+  apiGet_getFoodCity,
 } from '@/plugins/axiosMiddleware'
 
 export default {
@@ -10,6 +12,10 @@ export default {
     activity: null /* 活動 */,
     activityDetail: null /* 活動詳情 */,
     activityId: '' /* 當前查看的活動id */,
+    topFood: null /* 首頁餐廳 */,
+    food: null /* 餐廳 */,
+    foodDetail: null /* 餐廳詳情 */,
+    foodId: '' /* 當前查看的餐廳id */,
   },
   mutations: {
     topActivity(state, val) {
@@ -23,6 +29,18 @@ export default {
     },
     activityId(state, val) {
       state.activityId = val
+    },
+    topFood(state, val) {
+      state.topFood = val
+    },
+    food(state, val) {
+      state.food = val
+    },
+    foodDetail(state, val) {
+      state.foodDetail = val
+    },
+    foodId(state, val) {
+      state.foodId = val
     },
   },
   actions: {
@@ -71,6 +89,58 @@ export default {
         .then((res) => {
           if (res && res.data) {
             commit('activityDetail', res.data[0])
+          }
+        })
+        .catch((err) => {
+          console.log(err || err.message, 'err')
+        })
+      dispatch('loading', false, { root: true })
+    },
+    getFood({ commit, dispatch }, params) {
+      dispatch('loading', true, { root: true })
+      apiGet_getFood(params)
+        .then((res) => {
+          if (res && res.data) {
+            commit('topFood', res.data)
+          }
+        })
+        .catch((err) => {
+          console.log(err || err.message, 'err')
+        })
+      dispatch('loading', false, { root: true })
+    },
+    getFoodCity({ commit, dispatch }, { city, params }) {
+      dispatch('loading', true, { root: true })
+      if (city === '') {
+        apiGet_getFood(params)
+          .then((res) => {
+            if (res && res.data) {
+              commit('food', res.data)
+            }
+          })
+          .catch((err) => {
+            console.log(err || err.message, 'err')
+          })
+      } else {
+        apiGet_getFoodCity(city, params)
+          .then((res) => {
+            if (res && res.data) {
+              commit('food', res.data)
+            }
+          })
+          .catch((err) => {
+            console.log(err || err.message, 'err')
+          })
+      }
+      dispatch('loading', false, { root: true })
+    },
+    getFoodDetail({ commit, dispatch, state }) {
+      dispatch('loading', true, { root: true })
+      const _params = `$filter=contains(RestaurantID,'${state.activityId}')&$format=JSON`
+      apiGet_getFood(_params)
+        .then((res) => {
+          if (res && res.data) {
+            commit('foodDetail', res.data[0])
           }
         })
         .catch((err) => {

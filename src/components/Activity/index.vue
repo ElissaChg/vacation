@@ -13,7 +13,7 @@
         <div class="time">{{ date }}</div>
         <div class="title">{{ item.ActivityName }}</div>
         <div class="bottom">
-          <Location :text="item.Location" />
+          <Location :text="item.City" />
           <div class="link">
             <span>{{ $t('pages.home.more') }}</span>
             <Icon icon="i-right" color="#7f977b" />

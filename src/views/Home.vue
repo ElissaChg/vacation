@@ -21,10 +21,19 @@
         <Card />
       </div>
     </div>
-    <div class="section" v-if="false">
-      <SectionTitle title="一在回訪美食" link="/about" />
+    <div class="section">
+      <SectionTitle title="一在回訪美食" link="/food" />
       <div class="row">
-        <Card />
+        <Card
+          v-for="item in spot_topFood"
+          :key="item.RestaurantID"
+          :item="item"
+          :text="item.RestaurantName"
+          :link="{
+            name: 'FoodDetail',
+            params: { id: item.RestaurantID },
+          }"
+        />
       </div>
     </div>
   </div>
@@ -52,9 +61,15 @@ export default {
         '$filter=Picture/PictureUrl1 ne null&$orderby=StartTime desc&$top=4&$format=JSON'
       this.spot_getActivity(_params)
     },
+    getFood() {
+      const _params =
+        '$filter=Picture/PictureUrl1 ne null&$orderby=UpdateTime desc&$top=4&$format=JSON'
+      this.spot_getFood(_params)
+    },
   },
   mounted() {
     this.getActivity()
+    this.getFood()
   },
 }
 </script>
@@ -70,12 +85,15 @@ export default {
   padding-bottom: 36px;
   & .row {
     display: flex;
-    align-items: center;
+    align-items: stretch;
     justify-content: center;
     flex-wrap: wrap;
     @media (--pc-viewport) {
       justify-content: space-between;
     }
+  }
+  & .card {
+    width: 22.97%;
   }
 }
 </style>

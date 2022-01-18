@@ -47,6 +47,7 @@ export default {
 <style lang="postcss" scoped>
 @import 'val.postcss';
 .button {
+  flex: 0 0 32px;
   width: 32px;
   height: 32px;
   border: 1px solid var(--gray5);
@@ -58,6 +59,7 @@ export default {
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  margin-bottom: 8px;
   &:hover {
     @media (hover: hover) {
       border-color: var(--gray4);
