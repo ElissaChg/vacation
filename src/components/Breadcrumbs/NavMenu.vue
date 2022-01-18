@@ -37,9 +37,7 @@ export default {
   &:active {
     color: var(--green5);
   }
-  &.router-link-exact-active {
-    color: var(--gray3);
-    cursor: default;
+  &.router-link-active + .router-link-active {
     &:before {
       content: '/';
       color: var(--gray3);
@@ -47,6 +45,10 @@ export default {
       cursor: default;
       box-sizing: border-box;
     }
+  }
+  &.router-link-exact-active {
+    color: var(--gray3);
+    cursor: default;
   }
 }
 </style>

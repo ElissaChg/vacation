@@ -24,8 +24,8 @@ export default {
       default: null,
     },
     link: {
-      type: String,
-      default: '',
+      type: [Object, String],
+      default: null,
     },
   },
   components: {
@@ -88,7 +88,7 @@ export default {
     font-size: var(--text3);
     font-weight: 700;
     color: var(--gray1);
-    padding-bottom: 6px;
+    margin-bottom: 6px;
     @apply --text-break;
     @media (--pc-viewport) {
       font-size: var(--text5);

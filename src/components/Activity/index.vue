@@ -37,7 +37,7 @@ export default {
       default: null,
     },
     link: {
-      type: String,
+      type: [String, Object],
       default: '',
     },
   },
