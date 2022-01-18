@@ -130,3 +130,41 @@ export const ACTIVITY = [
     img: '/img/unsplash_fS0zfcOYa4A.png',
   },
 ]
+
+export const FOOD = [
+  {
+    value: '',
+    label: '全部主題',
+    img: '',
+  },
+  {
+    value: '地方特產',
+    label: '地方特產',
+    img: '/img/unsplash_bRdRUUtbxO0.png',
+  },
+  {
+    value: '中式美食',
+    label: '中式美食',
+    img: '/img/unsplash_jFu2L04tMBc.png',
+  },
+  {
+    value: '甜點冰品',
+    label: '甜點冰品',
+    img: '/img/unsplash_LI368L2RZno.png',
+  },
+  {
+    value: '異國料理',
+    label: '異國料理',
+    img: '/img/unsplash_b-2uxjTcxH0.png',
+  },
+  {
+    value: '伴手禮',
+    label: '伴手禮',
+    img: '/img/unsplash_CnrDuY0tFrg.png',
+  },
+  {
+    value: '素食',
+    label: '素食',
+    img: '/img/unsplash_4MEL9XS-3JQ.png',
+  },
+]

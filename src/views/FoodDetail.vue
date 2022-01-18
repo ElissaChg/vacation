@@ -1,31 +1,34 @@
 <template>
-  <div class="detail" v-if="spot_activityDetail">
+  <div class="detail" v-if="spot_foodDetail">
     <Breadcrumbs>
-      <NavMenu :text="$t('components.nav.activity')" to="/activity" />
-      <NavMenu :text="spot_activityDetail.ActivityName" />
+      <NavMenu :text="$t('components.nav.food')" to="/food" />
+      <NavMenu :text="spot_foodDetail.RestaurantName" />
     </Breadcrumbs>
     <div class="section">
-      <h3 class="title">{{ spot_activityDetail.ActivityName }}</h3>
+      <h3 class="title">{{ spot_foodDetail.RestaurantName }}</h3>
       <div class="tagbox">
-        <ClassTag>{{ `# ${spot_activityDetail.Class1}` }}</ClassTag>
-        <ClassTag>{{ `# ${spot_activityDetail.Class2}` }}</ClassTag>
+        <ClassTag>{{ `# ${spot_foodDetail.Class}` }}</ClassTag>
       </div>
       <div class="desc">
-        <h4>活動介紹：</h4>
-        <div>{{ spot_activityDetail.Description }}</div>
+        <h4>餐廳介紹：</h4>
+        <div>{{ spot_foodDetail.Description }}</div>
       </div>
       <div class="info">
         <div class="row">
-          <h4>活動時間：</h4>
-          <div>{{ time }}</div>
+          <h4>營業時間：</h4>
+          <div>{{ spot_foodDetail.OpenTime }}</div>
         </div>
         <div class="row">
-          <h4>主辦單位：</h4>
-          <div>{{ spot_activityDetail.Organizer }}</div>
+          <h4>連絡電話：</h4>
+          <div>{{ spot_foodDetail.Phone }}</div>
         </div>
         <div class="row">
-          <h4>活動地點：</h4>
-          <div>{{ spot_activityDetail.Address }}</div>
+          <h4>餐廳地址：</h4>
+          <div>{{ spot_foodDetail.Address }}</div>
+        </div>
+        <div class="row">
+          <h4>官方網站：</h4>
+          <div>{{ spot_foodDetail.WebsiteUrl }}</div>
         </div>
       </div>
     </div>
@@ -37,30 +40,22 @@ import spotDelegate from '@/delegate/spotDelegate'
 import Breadcrumbs from '@/components/Breadcrumbs'
 import NavMenu from '@/components/Breadcrumbs/NavMenu'
 import ClassTag from '@/components/ClassTag'
-import { toDateAndTime } from '@/tools/dataFormet'
 
 export default {
-  name: 'ActivityDetail',
+  name: 'FoodDetail',
   components: {
     Breadcrumbs,
     NavMenu,
     ClassTag,
   },
   mixins: [spotDelegate],
-  computed: {
-    time() {
-      return `${toDateAndTime(
-        this.spot_activityDetail.StartTime
-      )} - ${toDateAndTime(this.spot_activityDetail.EndTime)}`
-    },
-  },
   mounted() {
-    this.spot_activityId = this.$route.params.id
-    this.spot_getActivityDetail()
+    this.spot_foodId = this.$route.params.id
+    this.spot_getFoodDetail()
   },
   beforeDestroy() {
-    this.spot_activityId = ''
-    this.spot_activityDetail = null
+    this.spot_foodId = ''
+    this.spot_foodDetail = null
   },
 }
 </script>

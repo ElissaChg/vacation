@@ -8,8 +8,8 @@
       ></div>
       <div class="icon" v-else></div>
     </div>
-    <div class="title">{{ item.ActivityName }}</div>
-    <Location :text="item.Location" />
+    <div class="title">{{ text }}</div>
+    <Location :text="item.City" v-if="item.City" />
   </router-link>
 </template>
 
@@ -23,9 +23,13 @@ export default {
       type: Object,
       default: null,
     },
+    text: {
+      type: String,
+      default: '',
+    },
     link: {
-      type: [Object, String],
-      default: null,
+      type: [String, Object],
+      default: '',
     },
   },
   components: {

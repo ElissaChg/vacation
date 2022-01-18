@@ -3,6 +3,8 @@ import VueRouter from 'vue-router'
 import Home from '@/views/Home'
 import ActivityList from '@/views/ActivityList'
 import ActivityDetail from '@/views/ActivityDetail'
+import FoodList from '@/views/FoodList'
+import FoodDetail from '@/views/FoodDetail'
 import About from '@/views/About'
 
 Vue.use(VueRouter)
@@ -22,6 +24,16 @@ const routes = [
     path: '/activity/:id',
     name: 'ActivityDetail',
     component: ActivityDetail,
+  },
+  {
+    path: '/food',
+    name: 'FoodList',
+    component: FoodList,
+  },
+  {
+    path: '/food/:id',
+    name: 'FoodDetail',
+    component: FoodDetail,
   },
   {
     path: '/about',

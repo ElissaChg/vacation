@@ -19,7 +19,7 @@
         <router-link to="/activity">{{
           $t('components.nav.activity')
         }}</router-link>
-        <!-- <router-link to="/about">{{ $t('components.nav.food') }}</router-link> -->
+        <router-link to="/food">{{ $t('components.nav.food') }}</router-link>
       </div>
     </div>
   </div>

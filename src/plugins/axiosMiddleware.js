@@ -35,3 +35,17 @@ export const apiGet_getActivity = (params) => {
 export const apiGet_getActivityCity = (city, params) => {
   return ptxWeb.get(`/Tourism/Activity/${city}?${params}`)
 }
+
+/**
+ * 取得觀光餐飲資料
+ */
+export const apiGet_getFood = (params) => {
+  return ptxWeb.get(`/Tourism/Restaurant?${params}`)
+}
+
+/**
+ * 取得指定縣市觀光餐飲資料
+ */
+export const apiGet_getFoodCity = (city, params) => {
+  return ptxWeb.get(`/Tourism/Restaurant/${city}?${params}`)
+}
