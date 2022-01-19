@@ -143,8 +143,8 @@ export default {
       handler(val) {
         if (val) {
           this.searchKey = val
-          this.search()
         }
+        this.search()
       },
     },
     spot_scenicSpot(val) {

@@ -48,7 +48,7 @@ export default {
   },
   data() {
     return {
-      searchType: 'scenicspot',
+      searchType: 'activity',
       searchKey: '',
     }
   },
@@ -58,7 +58,7 @@ export default {
     },
   },
   beforeDestroy() {
-    this.searchType = 'scenicspot'
+    this.searchType = 'activity'
   },
 }
 </script>
