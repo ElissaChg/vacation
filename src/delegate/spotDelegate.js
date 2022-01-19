@@ -96,6 +96,14 @@ export default {
         return this.$store.state.spot.scenicSpotId
       },
     },
+    spot_topSearchKey: {
+      set(val) {
+        this.$store.commit('spot/topSearchKey', val)
+      },
+      get() {
+        return this.$store.state.spot.topSearchKey
+      },
+    },
   },
   methods: {
     spot_getActivity(params) {

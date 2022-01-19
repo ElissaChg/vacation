@@ -138,6 +138,15 @@ export default {
     },
   },
   watch: {
+    spot_topSearchKey: {
+      immediate: true,
+      handler(val) {
+        if (val) {
+          this.searchKey = val
+          this.search()
+        }
+      },
+    },
     spot_activity(val) {
       if (val) {
         this.canSubmit = true

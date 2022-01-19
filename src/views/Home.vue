@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <HeroImg />
+    <HeroImg @on-click="search" />
     <div class="section">
       <SectionTitle title="近期活動" link="/activity" />
       <div class="row">
@@ -81,11 +81,18 @@ export default {
       const _params = `$filter=City ne null and Picture/PictureUrl1 ne null&$orderby=UpdateTime desc&$top=4&$format=JSON`
       this.spot_getFood(_params)
     },
+    search(val) {
+      this.spot_topSearchKey = val.keyword
+      this.$router.push(`/${val.type}`)
+    },
   },
   mounted() {
     this.getActivity()
     this.getFood()
     this.getScenicSpot()
+  },
+  beforeDestroy() {
+    this.spot_topSearchKey = ''
   },
 }
 </script>
