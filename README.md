@@ -5,6 +5,9 @@ vue2&RWD 專案
 開發
 
 ```shell
+# 安裝
+yarn
+
 # 啟動 node
 yarn app
 
