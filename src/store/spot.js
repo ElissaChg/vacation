@@ -136,7 +136,7 @@ export default {
     },
     getFoodDetail({ commit, dispatch, state }) {
       dispatch('loading', true, { root: true })
-      const _params = `$filter=contains(RestaurantID,'${state.activityId}')&$format=JSON`
+      const _params = `$filter=contains(RestaurantID,'${state.foodId}')&$format=JSON`
       apiGet_getFood(_params)
         .then((res) => {
           if (res && res.data) {

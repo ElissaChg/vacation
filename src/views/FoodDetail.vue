@@ -14,7 +14,7 @@
         <div>{{ spot_foodDetail.Description }}</div>
       </div>
       <div class="info">
-        <div class="row">
+        <div class="row" v-if="spot_foodDetail.OpenTime">
           <h4>營業時間：</h4>
           <div>{{ spot_foodDetail.OpenTime }}</div>
         </div>
@@ -26,7 +26,7 @@
           <h4>餐廳地址：</h4>
           <div>{{ spot_foodDetail.Address }}</div>
         </div>
-        <div class="row">
+        <div class="row" v-if="spot_foodDetail.WebsiteUrl">
           <h4>官方網站：</h4>
           <div>{{ spot_foodDetail.WebsiteUrl }}</div>
         </div>
@@ -49,6 +49,7 @@ export default {
     ClassTag,
   },
   mixins: [spotDelegate],
+
   mounted() {
     this.spot_foodId = this.$route.params.id
     this.spot_getFoodDetail()
