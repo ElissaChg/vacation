@@ -64,6 +64,38 @@ export default {
         return this.$store.state.spot.foodId
       },
     },
+    spot_topScenicSpot: {
+      set(val) {
+        this.$store.commit('spot/topScenicSpot', val)
+      },
+      get() {
+        return this.$store.state.spot.topScenicSpot
+      },
+    },
+    spot_scenicSpot: {
+      set(val) {
+        this.$store.commit('spot/scenicSpot', val)
+      },
+      get() {
+        return this.$store.state.spot.scenicSpot
+      },
+    },
+    spot_scenicSpotDetail: {
+      set(val) {
+        this.$store.commit('spot/scenicSpotDetail', val)
+      },
+      get() {
+        return this.$store.state.spot.scenicSpotDetail
+      },
+    },
+    spot_scenicSpotId: {
+      set(val) {
+        this.$store.commit('spot/scenicSpotId', val)
+      },
+      get() {
+        return this.$store.state.spot.scenicSpotId
+      },
+    },
   },
   methods: {
     spot_getActivity(params) {
@@ -83,6 +115,15 @@ export default {
     },
     spot_getFoodDetail() {
       this.$store.dispatch('spot/getFoodDetail')
+    },
+    spot_getScenicSpot(params) {
+      this.$store.dispatch('spot/getScenicSpot', params)
+    },
+    spot_getScenicSpotCity(city, params) {
+      this.$store.dispatch('spot/getScenicSpotCity', { city, params })
+    },
+    spot_getScenicSpotDetail() {
+      this.$store.dispatch('spot/getScenicSpotDetail')
     },
   },
 }

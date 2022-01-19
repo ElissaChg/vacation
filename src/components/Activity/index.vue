@@ -1,11 +1,11 @@
 <template>
   <div class="activity" v-if="item">
     <router-link :to="link">
-      <div class="photo" :class="[photo ? '' : 'no']">
+      <div class="photo" :class="[img ? '' : 'no']">
         <div
           class="img"
-          :style="{ 'background-image': `url('${photo}')` }"
-          v-if="photo"
+          :style="{ 'background-image': `url('${img}')` }"
+          v-if="img"
         ></div>
         <div class="icon" v-else></div>
       </div>
@@ -45,12 +45,31 @@ export default {
     Icon,
     Location,
   },
+  data() {
+    return {
+      img: '',
+    }
+  },
+  watch: {
+    item: {
+      immediate: true,
+      handler(val) {
+        if (val && val.Picture && val.Picture.PictureUrl1) {
+          const _img = new Image()
+          _img.onload = () => {
+            this.img = val.Picture.PictureUrl1
+          }
+          _img.onerror = () => {}
+          _img.src = val.Picture.PictureUrl1
+        } else {
+          this.img = ''
+        }
+      },
+    },
+  },
   computed: {
     date() {
       return `${toDate(this.item.StartTime)} - ${toDate(this.item.EndTime)}`
-    },
-    photo() {
-      return (this.item.Picture && this.item.Picture.PictureUrl1) || ''
     },
   },
 }

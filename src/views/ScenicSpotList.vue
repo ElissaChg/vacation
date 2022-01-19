@@ -1,24 +1,24 @@
 <template>
   <div class="list">
     <Breadcrumbs>
-      <NavMenu :text="$t('components.nav.activity')" />
+      <NavMenu :text="$t('components.nav.scenicSpot')" />
     </Breadcrumbs>
     <div class="bar">
       <SelectUi :options="cityOptions" v-model="searchCity" />
       <SelectUi
-        :options="activityOptions"
+        :options="scenicSpotOptions"
         v-model="searchType"
         :value="searchType"
       />
       <input
         class="input"
         type="text"
-        :placeholder="$t('components.searchBar.activity')"
+        :placeholder="$t('components.searchBar.food')"
         v-model.trim="searchKey"
       />
       <Search :disabled="!canSubmit" @on-click="search" />
     </div>
-    <div class="section" v-if="spot_activity">
+    <div class="section" v-if="spot_scenicSpot">
       <div class="title">
         <div>{{ $t('components.searchList.result') }}</div>
         <div class="result">
@@ -30,15 +30,15 @@
         <div class="row">
           <div
             class="cardbox"
-            v-for="item in filterActivity"
-            :key="item.ActivityID"
+            v-for="item in filterScenicSpot"
+            :key="item.ScenicSpotID"
           >
             <Card
               :item="item"
-              :text="item.ActivityName"
+              :text="item.ScenicSpotName"
               :link="{
-                name: 'ActivityDetail',
-                params: { id: item.ActivityID },
+                name: 'ScenicSpotDetail',
+                params: { id: item.ScenicSpotID },
               }"
             />
           </div>
@@ -81,11 +81,11 @@ import Card from '@/components/Card'
 import TypeCard from '@/components/TypeCard'
 import NoData from '@/components/ui/NoData'
 import Pagination from '@/components/Pagination'
-import { CITY, ACTIVITY } from '@/tools/searchType'
+import { CITY, SCENICSPOT } from '@/tools/searchType'
 import Lazy from 'lazy.js'
 
 export default {
-  name: 'ActivityList',
+  name: 'ScenicSpotList',
   components: {
     Breadcrumbs,
     NavMenu,
@@ -101,58 +101,58 @@ export default {
     return {
       searchKey: '' /*搜尋關鍵字 */,
       searchCity: '' /*搜尋城市 */,
-      searchType: '' /*搜尋活動主題 */,
+      searchType: '' /*搜尋風景主題 */,
       canSubmit: true,
       numPage: 1,
       perPage: 20,
-      filterActivity: null,
+      filterScenicSpot: null,
     }
   },
   computed: {
     cityOptions() {
       return CITY
     },
-    activityOptions() {
-      return ACTIVITY
+    scenicSpotOptions() {
+      return SCENICSPOT
     },
     classType() {
-      return Lazy(ACTIVITY)
+      return Lazy(SCENICSPOT)
         .filter((el) => el.img !== '')
         .toArray()
     },
     total() {
-      return this.spot_activity && this.spot_activity.length
+      return this.spot_scenicSpot && this.spot_scenicSpot.length
     },
     searchState() {
       const _params = `$format=JSON`
       if (this.searchType) {
         if (this.searchKey) {
-          return `$filter=(contains(ActivityName,'${this.searchKey}') or contains(Description,'${this.searchKey}') or contains(Address,'${this.searchKey}')) and (contains(Class1, '${this.searchType}') or contains(Class2, '${this.searchType}')) and Picture/PictureUrl1 ne null&${_params}`
+          return `$filter=(contains(ScenicSpotName,'${this.searchKey}') or contains(Description,'${this.searchKey}') or contains(Address,'${this.searchKey}')) and (contains(Class1, '${this.searchType}') or contains(Class2, '${this.searchType}') or contains(Class3, '${this.searchType}')) and Picture/PictureUrl1 ne null&${_params}`
         }
-        return `$filter=(contains(Class1, '${this.searchType}') or contains(Class2, '${this.searchType}')) and Picture/PictureUrl1 ne null&${_params}`
+        return `$filter=(contains(Class1, '${this.searchType}') or contains(Class2, '${this.searchType}') or contains(Class3, '${this.searchType}')) and Picture/PictureUrl1 ne null&${_params}`
       }
       if (this.searchKey) {
-        return `$filter=(contains(ActivityName,'${this.searchKey}') or contains(Description,'${this.searchKey}') or contains(Address,'${this.searchKey}')) and Picture/PictureUrl1 ne null&${_params}`
+        return `$filter=(contains(ScenicSpotName,'${this.searchKey}') or contains(Description,'${this.searchKey}') or contains(Address,'${this.searchKey}')) and Picture/PictureUrl1 ne null&${_params}`
       }
       return `$filter=Picture/PictureUrl1 ne null&${_params}`
     },
   },
   watch: {
-    spot_activity(val) {
+    spot_scenicSpot(val) {
       if (val) {
         this.canSubmit = true
-        this.getFilterActivity()
+        this.getFilterScenicSpot()
       }
     },
     numPage() {
-      this.getFilterActivity()
+      this.getFilterScenicSpot()
     },
   },
   methods: {
     search() {
       this.numPage = 1
       this.canSubmit = false
-      this.spot_getActivityCity(this.searchCity, this.searchState)
+      this.spot_getScenicSpotCity(this.searchCity, this.searchState)
     },
     setType(val) {
       this.searchType = val
@@ -164,15 +164,15 @@ export default {
     nextPage() {
       this.numPage += 1
     },
-    getFilterActivity() {
+    getFilterScenicSpot() {
       const _offset = (this.numPage - 1) * this.perPage
-      this.filterActivity = Lazy(this.spot_activity)
+      this.filterScenicSpot = Lazy(this.spot_scenicSpot)
         .slice(_offset, _offset + this.perPage)
         .toArray()
     },
   },
   beforeDestroy() {
-    this.spot_activity = null
+    this.spot_scenicSpot = null
   },
 }
 </script>

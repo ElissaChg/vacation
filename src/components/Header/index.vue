@@ -15,7 +15,9 @@
         </div>
       </div>
       <div class="nav" :class="[common_activeNav ? 'active' : '']">
-        <!-- <router-link to="/about">{{ $t('components.nav.scenicSpot') }}</router-link> -->
+        <router-link to="/scenicspot">{{
+          $t('components.nav.scenicSpot')
+        }}</router-link>
         <router-link to="/activity">{{
           $t('components.nav.activity')
         }}</router-link>

@@ -168,3 +168,46 @@ export const FOOD = [
     img: '/img/unsplash_4MEL9XS-3JQ.png',
   },
 ]
+
+export const SCENICSPOT = [
+  {
+    value: '',
+    label: '全部主題',
+    img: '',
+  },
+  {
+    value: '自然風景類',
+    label: '自然風景類',
+    img: '/img/unsplash_pn5c-CLWGzY.png',
+  },
+  {
+    value: '觀光工廠類',
+    label: '觀光工廠類',
+    img: '/img/Rectangle93.png',
+  },
+  {
+    value: '遊憩類',
+    label: '遊憩類',
+    img: '/img/Rectangle94.png',
+  },
+  {
+    value: '休閒農業類',
+    label: '休閒農業類',
+    img: '/img/Rectangle95.png',
+  },
+  {
+    value: '生態類',
+    label: '生態類',
+    img: '/img/unsplash_7tvbRQ5AKs4.png',
+  },
+  {
+    value: '溫泉類',
+    label: '溫泉類',
+    img: '/img/unsplash_I8K-lIkvqYI.png',
+  },
+  {
+    value: '古蹟類',
+    label: '古蹟類',
+    img: '/img/Rectangle98.png',
+  },
+]

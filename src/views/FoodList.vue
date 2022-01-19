@@ -131,6 +131,9 @@ export default {
         }
         return `$filter=(contains(Class, '${this.searchType}')) and Picture/PictureUrl1 ne null&${_params}`
       }
+      if (this.searchKey) {
+        return `$filter=(contains(RestaurantName,'${this.searchKey}') or contains(Description,'${this.searchKey}') or contains(Address,'${this.searchKey}')) and Picture/PictureUrl1 ne null&${_params}`
+      }
       return `$filter=Picture/PictureUrl1 ne null&${_params}`
     },
   },

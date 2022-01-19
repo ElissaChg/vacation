@@ -21,9 +21,7 @@
         <Search />
       </div>
     </div>
-    <div class="slider">
-      <div class="p1"></div>
-    </div>
+    <div class="slider"></div>
   </div>
 </template>
 
@@ -53,15 +51,18 @@ export default {
   align-items: center;
   flex-direction: column;
   justify-content: space-between;
-  box-sizing: border-box;
+  margin-bottom: 36px;
   @media (--pc-viewport) {
     flex-direction: row;
-    padding: 0px 95px 60px 95px;
+    margin-bottom: 60px;
+    padding: 0px 60px;
+    box-sizing: border-box;
   }
 }
 .info {
-  padding-bottom: 35px;
+  padding-bottom: 20px;
   @media (--pc-viewport) {
+    flex: 0 0 480px;
     padding-bottom: 0px;
   }
   & h2 {
@@ -71,10 +72,12 @@ export default {
     line-height: 40px;
     margin: 0px;
     padding-bottom: 14px;
+    text-align: center;
     @media (--pc-viewport) {
       font-size: var(--text9);
       line-height: 70px;
       padding-bottom: 17px;
+      text-align: left;
     }
     & span {
       border-bottom: 2px solid var(--green4);
@@ -96,12 +99,14 @@ export default {
   }
 }
 .action {
-  padding-bottom: 38px;
+  max-width: 345px;
+  width: 100%;
   @media (--pc-viewport) {
-    padding-bottom: 0px;
+    margin-left: 35px;
+    flex: 0 1 350px;
   }
   & .label {
-    width: 350px;
+    width: 100%;
     height: 50px;
     line-height: 50px;
     font-size: var(--text2);
@@ -114,8 +119,11 @@ export default {
     margin-bottom: 7px;
   }
   & > input {
-    width: 350px;
+    width: 100%;
     @apply --input;
+    @media (--pc-viewport) {
+      margin-bottom: 7px;
+    }
     &::placeholder {
       color: var(--gray4);
     }
@@ -123,11 +131,14 @@ export default {
 }
 .slider {
   width: 100%;
-  height: 400px;
-  background-image: url('https://fakeimg.pl/1920x1080/');
+  height: 185px;
+  background-image: url('/img/ScenicSpotPicture.png');
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
   border-radius: 24px;
+  @media (--pc-viewport) {
+    height: 400px;
+  }
 }
 </style>

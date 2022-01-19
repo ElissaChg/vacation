@@ -3,6 +3,8 @@ import {
   apiGet_getActivityCity,
   apiGet_getFood,
   apiGet_getFoodCity,
+  apiGet_getScenicSpot,
+  apiGet_getScenicSpotCity,
 } from '@/plugins/axiosMiddleware'
 
 export default {
@@ -16,6 +18,10 @@ export default {
     food: null /* 餐廳 */,
     foodDetail: null /* 餐廳詳情 */,
     foodId: '' /* 當前查看的餐廳id */,
+    topScenicSpot: null /* 首頁景點 */,
+    scenicSpot: null /* 景點 */,
+    scenicSpotDetail: null /* 景點詳情 */,
+    scenicSpotId: '' /* 當前查看的景點id */,
   },
   mutations: {
     topActivity(state, val) {
@@ -41,6 +47,18 @@ export default {
     },
     foodId(state, val) {
       state.foodId = val
+    },
+    topScenicSpot(state, val) {
+      state.topScenicSpot = val
+    },
+    scenicSpot(state, val) {
+      state.scenicSpot = val
+    },
+    scenicSpotDetail(state, val) {
+      state.scenicSpotDetail = val
+    },
+    scenicSpotId(state, val) {
+      state.scenicSpotId = val
     },
   },
   actions: {
@@ -141,6 +159,58 @@ export default {
         .then((res) => {
           if (res && res.data) {
             commit('foodDetail', res.data[0])
+          }
+        })
+        .catch((err) => {
+          console.log(err || err.message, 'err')
+        })
+      dispatch('loading', false, { root: true })
+    },
+    getScenicSpot({ commit, dispatch }, params) {
+      dispatch('loading', true, { root: true })
+      apiGet_getScenicSpot(params)
+        .then((res) => {
+          if (res && res.data) {
+            commit('topScenicSpot', res.data)
+          }
+        })
+        .catch((err) => {
+          console.log(err || err.message, 'err')
+        })
+      dispatch('loading', false, { root: true })
+    },
+    getScenicSpotCity({ commit, dispatch }, { city, params }) {
+      dispatch('loading', true, { root: true })
+      if (city === '') {
+        apiGet_getScenicSpot(params)
+          .then((res) => {
+            if (res && res.data) {
+              commit('scenicSpot', res.data)
+            }
+          })
+          .catch((err) => {
+            console.log(err || err.message, 'err')
+          })
+      } else {
+        apiGet_getScenicSpotCity(city, params)
+          .then((res) => {
+            if (res && res.data) {
+              commit('scenicSpot', res.data)
+            }
+          })
+          .catch((err) => {
+            console.log(err || err.message, 'err')
+          })
+      }
+      dispatch('loading', false, { root: true })
+    },
+    getScenicSpotDetail({ commit, dispatch, state }) {
+      dispatch('loading', true, { root: true })
+      const _params = `$filter=contains(ScenicSpotID,'${state.scenicSpotId}')&$format=JSON`
+      apiGet_getScenicSpot(_params)
+        .then((res) => {
+          if (res && res.data) {
+            commit('scenicSpotDetail', res.data[0])
           }
         })
         .catch((err) => {
