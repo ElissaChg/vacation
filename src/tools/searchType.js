@@ -211,3 +211,20 @@ export const SCENICSPOT = [
     img: '/img/Rectangle98.png',
   },
 ]
+
+export const FILTER_TYPE = (vm) => {
+  return [
+    {
+      value: 'scenicspot',
+      label: vm.$t('components.nav.scenicSpot'),
+    },
+    {
+      value: 'activity',
+      label: vm.$t('components.nav.activity'),
+    },
+    {
+      value: 'food',
+      label: vm.$t('components.nav.food'),
+    },
+  ]
+}

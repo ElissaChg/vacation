@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <HeroImg />
+    <HeroImg @on-click="search" />
     <div class="section">
       <SectionTitle title="近期活動" link="/activity" />
       <div class="row">
@@ -66,23 +66,33 @@ export default {
   mixins: [spotDelegate],
   methods: {
     getScenicSpot() {
-      const _params = `$filter=(contains(City,'')) and Picture/PictureUrl1 ne null&$orderby=UpdateTime desc&$top=4&$format=JSON`
+      const _params = `$filter=City ne null and Picture/PictureUrl1 ne null&$orderby=UpdateTime desc&$top=4&$format=JSON`
       this.spot_getScenicSpot(_params)
     },
     getActivity() {
       const _month = new Date().getMonth() + 1
-      const _params = `$filter=(month(StartTime) eq ${_month}) and Picture/PictureUrl1 ne null&$top=4&$format=JSON`
+      const _day = new Date().getDate()
+      const _params = `$filter=day(StartTime) ge ${_day} and (month(StartTime) eq ${_month} or month(StartTime) eq ${
+        _month + 1
+      }) and Picture/PictureUrl1 ne null&$orderby=StartTime asc&$top=4&$format=JSON`
       this.spot_getActivity(_params)
     },
     getFood() {
-      const _params = `$filter=(contains(City,'')) and Picture/PictureUrl1 ne null&$orderby=UpdateTime desc&$top=4&$format=JSON`
+      const _params = `$filter=City ne null and Picture/PictureUrl1 ne null&$orderby=UpdateTime desc&$top=4&$format=JSON`
       this.spot_getFood(_params)
+    },
+    search(val) {
+      this.spot_topSearchKey = val.keyword
+      this.$router.push(`/${val.type}`)
     },
   },
   mounted() {
     this.getActivity()
     this.getFood()
     this.getScenicSpot()
+  },
+  beforeDestroy() {
+    this.spot_topSearchKey = ''
   },
 }
 </script>

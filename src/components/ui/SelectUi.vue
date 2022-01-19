@@ -73,6 +73,7 @@ export default {
     background-color: var(--white);
     font-weight: 500;
     color: var(--green3);
+    border-radius: 5px;
     position: absolute;
     pointer-events: none;
     display: flex;
@@ -85,6 +86,7 @@ export default {
   & select {
     width: 100%;
     height: 50px;
+    border-radius: 5px;
     cursor: pointer;
   }
 }

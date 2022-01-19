@@ -13,12 +13,20 @@
         </h3>
       </div>
       <div class="action">
-        <div class="label">搜索景點</div>
+        <SelectUi :options="filterTypeOptions" v-model="searchType" />
         <input
           type="text"
           :placeholder="$t('components.searchBar.scenicSpot')"
+          v-model.trim="searchKey"
         />
-        <Search />
+        <Search
+          @on-click="
+            $emit('on-click', {
+              type: searchType,
+              keyword: searchKey,
+            })
+          "
+        />
       </div>
     </div>
     <div class="slider"></div>
@@ -28,12 +36,29 @@
 <script>
 import Icon from '@/components/Icon'
 import Search from '@/components/Search'
+import SelectUi from '@/components/ui/SelectUi'
+import { FILTER_TYPE } from '@/tools/searchType'
 
 export default {
   name: 'HeroImg',
   components: {
     Icon,
     Search,
+    SelectUi,
+  },
+  data() {
+    return {
+      searchType: 'scenicspot',
+      searchKey: '',
+    }
+  },
+  computed: {
+    filterTypeOptions() {
+      return FILTER_TYPE(this)
+    },
+  },
+  beforeDestroy() {
+    this.searchType = 'scenicspot'
   },
 }
 </script>
@@ -105,17 +130,7 @@ export default {
     margin-left: 35px;
     flex: 0 1 350px;
   }
-  & .label {
-    width: 100%;
-    height: 50px;
-    line-height: 50px;
-    font-size: var(--text2);
-    font-weight: 500;
-    color: var(--green1);
-    border: solid 1px var(--gray5);
-    border-radius: 5px;
-    padding: 0px 30px;
-    box-sizing: border-box;
+  & .select-ui {
     margin-bottom: 7px;
   }
   & > input {

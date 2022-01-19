@@ -10,6 +10,7 @@ import {
 export default {
   namespaced: true,
   state: {
+    topSearchKey: '' /* 首頁搜尋關鍵字 */,
     topActivity: null /* 首頁活動 */,
     activity: null /* 活動 */,
     activityDetail: null /* 活動詳情 */,
@@ -24,6 +25,9 @@ export default {
     scenicSpotId: '' /* 當前查看的景點id */,
   },
   mutations: {
+    topSearchKey(state, val) {
+      state.topSearchKey = val
+    },
     topActivity(state, val) {
       state.topActivity = val
     },
