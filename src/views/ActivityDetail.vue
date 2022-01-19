@@ -128,14 +128,8 @@ export default {
     }
     & .row {
       display: flex;
-      @media (--pc-viewport) {
-        align-items: center;
-      }
       & + .row {
         margin-top: 10px;
-        @media (--pc-viewport) {
-          align-items: center;
-        }
       }
     }
   }

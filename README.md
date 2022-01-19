@@ -24,3 +24,7 @@ https://localhost:8080
 SSL_CERT_FILE=<憑證位置>
 SSL_KEY_FILE=<憑證key位置>
 ```
+
+## 其它
+
+[API 文件](https://ptx.transportdata.tw/MOTC/?urls.primaryName=%E8%A7%80%E5%85%89V2#/)

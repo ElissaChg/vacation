@@ -1,34 +1,53 @@
 <template>
-  <div class="detail" v-if="spot_foodDetail">
+  <div class="detail" v-if="spot_scenicSpotDetail">
     <Breadcrumbs>
-      <NavMenu :text="$t('components.nav.food')" to="/food" />
-      <NavMenu :text="spot_foodDetail.RestaurantName" />
+      <NavMenu :text="$t('components.nav.scenicSpot')" to="/scenicspot" />
+      <NavMenu :text="spot_scenicSpotDetail.ScenicSpotName" />
     </Breadcrumbs>
     <div class="section">
-      <h3 class="title">{{ spot_foodDetail.RestaurantName }}</h3>
-      <div class="tagbox">
-        <ClassTag>{{ `# ${spot_foodDetail.Class}` }}</ClassTag>
+      <h3 class="title">{{ spot_scenicSpotDetail.ScenicSpotName }}</h3>
+      <div class="tagbox" v-if="spot_scenicSpotDetail.Class1">
+        <ClassTag>{{ `# ${spot_scenicSpotDetail.Class1}` }}</ClassTag>
+        <ClassTag v-if="spot_scenicSpotDetail.Class2">{{
+          `# ${spot_scenicSpotDetail.Class2}`
+        }}</ClassTag>
+        <ClassTag v-if="spot_scenicSpotDetail.Class3">{{
+          `# ${spot_scenicSpotDetail.Class3}`
+        }}</ClassTag>
       </div>
       <div class="desc">
         <h4>餐廳介紹：</h4>
-        <div>{{ spot_foodDetail.Description }}</div>
+        <div>
+          {{
+            spot_scenicSpotDetail.DescriptionDetail ||
+            spot_scenicSpotDetail.Description
+          }}
+        </div>
       </div>
       <div class="info">
-        <div class="row" v-if="spot_foodDetail.OpenTime">
-          <h4>營業時間：</h4>
-          <div>{{ spot_foodDetail.OpenTime }}</div>
+        <div class="row" v-if="spot_scenicSpotDetail.OpenTime">
+          <h4>開放時間：</h4>
+          <div>{{ spot_scenicSpotDetail.OpenTime }}</div>
         </div>
         <div class="row">
-          <h4>連絡電話：</h4>
-          <div>{{ spot_foodDetail.Phone }}</div>
+          <h4>服務電話：</h4>
+          <div>{{ spot_scenicSpotDetail.Phone }}</div>
         </div>
         <div class="row">
-          <h4>餐廳地址：</h4>
-          <div>{{ spot_foodDetail.Address }}</div>
+          <h4>景點地址：</h4>
+          <div>{{ spot_scenicSpotDetail.Address }}</div>
         </div>
-        <div class="row" v-if="spot_foodDetail.WebsiteUrl">
+        <div class="row" v-if="spot_scenicSpotDetail.WebsiteUrl">
           <h4>官方網站：</h4>
-          <div>{{ spot_foodDetail.WebsiteUrl }}</div>
+          <div>{{ spot_scenicSpotDetail.WebsiteUrl }}</div>
+        </div>
+        <div class="row" v-if="spot_scenicSpotDetail.TicketInfo">
+          <h4>票價資訊：</h4>
+          <div>{{ spot_scenicSpotDetail.TicketInfo }}</div>
+        </div>
+        <div class="row" v-if="spot_scenicSpotDetail.Remarks">
+          <h4>注意事項：</h4>
+          <div>{{ spot_scenicSpotDetail.Remarks }}</div>
         </div>
       </div>
     </div>
@@ -42,7 +61,7 @@ import NavMenu from '@/components/Breadcrumbs/NavMenu'
 import ClassTag from '@/components/ClassTag'
 
 export default {
-  name: 'FoodDetail',
+  name: 'ScenicSpotDetail',
   components: {
     Breadcrumbs,
     NavMenu,
@@ -50,12 +69,12 @@ export default {
   },
   mixins: [spotDelegate],
   mounted() {
-    this.spot_foodId = this.$route.params.id
-    this.spot_getFoodDetail()
+    this.spot_scenicSpotId = this.$route.params.id
+    this.spot_getScenicSpotDetail()
   },
   beforeDestroy() {
-    this.spot_foodId = ''
-    this.spot_foodDetail = null
+    this.spot_scenicSpotId = ''
+    this.spot_scenicSpotDetail = null
   },
 }
 </script>
@@ -118,6 +137,7 @@ export default {
     border-radius: 12px;
     padding: 30px 18px;
     box-sizing: border-box;
+    user-select: text;
     @media (--pc-viewport) {
       padding: 30px;
     }

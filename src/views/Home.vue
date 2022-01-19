@@ -15,10 +15,19 @@
         />
       </div>
     </div>
-    <div class="section" v-if="false">
-      <SectionTitle title="熱門打卡景點" link="/about" />
+    <div class="section">
+      <SectionTitle title="熱門打卡景點" link="/scenicspot" />
       <div class="row">
-        <Card />
+        <Card
+          v-for="item in spot_topScenicSpot"
+          :key="item.ScenicSpotID"
+          :item="item"
+          :text="item.ScenicSpotName"
+          :link="{
+            name: 'ScenicSpotDetail',
+            params: { id: item.ScenicSpotID },
+          }"
+        />
       </div>
     </div>
     <div class="section">
@@ -56,20 +65,24 @@ export default {
   },
   mixins: [spotDelegate],
   methods: {
+    getScenicSpot() {
+      const _params = `$filter=(contains(City,'')) and Picture/PictureUrl1 ne null&$orderby=UpdateTime desc&$top=4&$format=JSON`
+      this.spot_getScenicSpot(_params)
+    },
     getActivity() {
       const _params =
         '$filter=Picture/PictureUrl1 ne null&$orderby=StartTime desc&$top=4&$format=JSON'
       this.spot_getActivity(_params)
     },
     getFood() {
-      const _params =
-        '$filter=Picture/PictureUrl1 ne null&$orderby=UpdateTime desc&$top=4&$format=JSON'
+      const _params = `$filter=(contains(City,'')) and Picture/PictureUrl1 ne null&$orderby=UpdateTime desc&$top=4&$format=JSON`
       this.spot_getFood(_params)
     },
   },
   mounted() {
     this.getActivity()
     this.getFood()
+    this.getScenicSpot()
   },
 }
 </script>
@@ -86,14 +99,16 @@ export default {
   & .row {
     display: flex;
     align-items: stretch;
-    justify-content: center;
+    justify-content: space-between;
     flex-wrap: wrap;
-    @media (--pc-viewport) {
-      justify-content: space-between;
-    }
   }
   & .card {
-    width: 22.97%;
+    width: 48.64%;
+    margin-bottom: 16px;
+    @media (--pc-viewport) {
+      width: 22.97%;
+      margin-bottom: 0px;
+    }
   }
 }
 </style>

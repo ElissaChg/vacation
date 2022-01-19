@@ -5,7 +5,8 @@ import ActivityList from '@/views/ActivityList'
 import ActivityDetail from '@/views/ActivityDetail'
 import FoodList from '@/views/FoodList'
 import FoodDetail from '@/views/FoodDetail'
-import About from '@/views/About'
+import ScenicSpotList from '@/views/ScenicSpotList'
+import ScenicSpotDetail from '@/views/ScenicSpotDetail'
 
 Vue.use(VueRouter)
 
@@ -36,9 +37,14 @@ const routes = [
     component: FoodDetail,
   },
   {
-    path: '/about',
-    name: 'About',
-    component: About,
+    path: '/scenicspot',
+    name: 'ScenicSpotList',
+    component: ScenicSpotList,
+  },
+  {
+    path: '/scenicspot/:id',
+    name: 'ScenicSpotDetail',
+    component: ScenicSpotDetail,
   },
 ]
 
