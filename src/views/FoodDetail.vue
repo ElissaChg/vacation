@@ -5,8 +5,15 @@
       <NavMenu :text="spot_foodDetail.RestaurantName" />
     </Breadcrumbs>
     <div class="section">
+      <div
+        class="photo"
+        :style="{
+          'background-image': `url('${img}')`,
+        }"
+        v-if="img"
+      ></div>
       <h3 class="title">{{ spot_foodDetail.RestaurantName }}</h3>
-      <div class="tagbox">
+      <div class="tagbox" v-if="spot_foodDetail.Class">
         <ClassTag>{{ `# ${spot_foodDetail.Class}` }}</ClassTag>
       </div>
       <div class="desc">
@@ -26,9 +33,15 @@
           <h4>餐廳地址：</h4>
           <div>{{ spot_foodDetail.Address }}</div>
         </div>
+        <div class="row" v-if="spot_foodDetail.ParkingInfo">
+          <h4>停車資訊：</h4>
+          <div>{{ spot_foodDetail.ParkingInfo }}</div>
+        </div>
         <div class="row" v-if="spot_foodDetail.WebsiteUrl">
           <h4>官方網站：</h4>
-          <div>{{ spot_foodDetail.WebsiteUrl }}</div>
+          <a :href="spot_foodDetail.WebsiteUrl" target="_blank">{{
+            spot_foodDetail.WebsiteUrl
+          }}</a>
         </div>
       </div>
     </div>
@@ -49,6 +62,25 @@ export default {
     ClassTag,
   },
   mixins: [spotDelegate],
+  data() {
+    return {
+      img: '',
+    }
+  },
+  watch: {
+    spot_foodDetail(val) {
+      if (val && val.Picture && val.Picture.PictureUrl1) {
+        const _img = new Image()
+        _img.onload = () => {
+          this.img = val.Picture.PictureUrl1
+        }
+        _img.onerror = () => {}
+        _img.src = val.Picture.PictureUrl1
+      } else {
+        this.img = ''
+      }
+    },
+  },
   mounted() {
     this.spot_foodId = this.$route.params.id
     this.spot_getFoodDetail()
@@ -70,6 +102,18 @@ export default {
 }
 .section {
   margin-bottom: 60px;
+  & .photo {
+    width: 100%;
+    height: 185px;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 24px;
+    margin-bottom: 30px;
+    @media (--pc-viewport) {
+      height: 400px;
+    }
+  }
   & .title {
     font-size: var(--text6);
     font-weight: 300;
@@ -118,6 +162,8 @@ export default {
     border-radius: 12px;
     padding: 30px 18px;
     box-sizing: border-box;
+    user-select: text;
+    @apply --text-many;
     @media (--pc-viewport) {
       padding: 30px;
     }
@@ -125,6 +171,14 @@ export default {
       display: flex;
       & + .row {
         margin-top: 10px;
+      }
+      & a {
+        color: var(--green1);
+        &:hover {
+          @media (hover: hover) {
+            color: var(--green3);
+          }
+        }
       }
     }
   }

@@ -5,6 +5,13 @@
       <NavMenu :text="spot_scenicSpotDetail.ScenicSpotName" />
     </Breadcrumbs>
     <div class="section">
+      <div
+        class="photo"
+        :style="{
+          'background-image': `url('${img}')`,
+        }"
+        v-if="img"
+      ></div>
       <h3 class="title">{{ spot_scenicSpotDetail.ScenicSpotName }}</h3>
       <div class="tagbox" v-if="spot_scenicSpotDetail.Class1">
         <ClassTag>{{ `# ${spot_scenicSpotDetail.Class1}` }}</ClassTag>
@@ -16,7 +23,7 @@
         }}</ClassTag>
       </div>
       <div class="desc">
-        <h4>餐廳介紹：</h4>
+        <h4>景點介紹：</h4>
         <div>
           {{
             spot_scenicSpotDetail.DescriptionDetail ||
@@ -37,9 +44,15 @@
           <h4>景點地址：</h4>
           <div>{{ spot_scenicSpotDetail.Address }}</div>
         </div>
+        <div class="row" v-if="spot_scenicSpotDetail.TravelInfo">
+          <h4>交通資訊：</h4>
+          <div>{{ spot_scenicSpotDetail.TravelInfo }}</div>
+        </div>
         <div class="row" v-if="spot_scenicSpotDetail.WebsiteUrl">
           <h4>官方網站：</h4>
-          <div>{{ spot_scenicSpotDetail.WebsiteUrl }}</div>
+          <a :href="spot_scenicSpotDetail.WebsiteUrl" target="_blank">{{
+            spot_scenicSpotDetail.WebsiteUrl
+          }}</a>
         </div>
         <div class="row" v-if="spot_scenicSpotDetail.TicketInfo">
           <h4>票價資訊：</h4>
@@ -68,6 +81,25 @@ export default {
     ClassTag,
   },
   mixins: [spotDelegate],
+  data() {
+    return {
+      img: '',
+    }
+  },
+  watch: {
+    spot_scenicSpotDetail(val) {
+      if (val && val.Picture && val.Picture.PictureUrl1) {
+        const _img = new Image()
+        _img.onload = () => {
+          this.img = val.Picture.PictureUrl1
+        }
+        _img.onerror = () => {}
+        _img.src = val.Picture.PictureUrl1
+      } else {
+        this.img = ''
+      }
+    },
+  },
   mounted() {
     this.spot_scenicSpotId = this.$route.params.id
     this.spot_getScenicSpotDetail()
@@ -89,6 +121,18 @@ export default {
 }
 .section {
   margin-bottom: 60px;
+  & .photo {
+    width: 100%;
+    height: 185px;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 24px;
+    margin-bottom: 30px;
+    @media (--pc-viewport) {
+      height: 400px;
+    }
+  }
   & .title {
     font-size: var(--text6);
     font-weight: 300;
@@ -138,6 +182,7 @@ export default {
     padding: 30px 18px;
     box-sizing: border-box;
     user-select: text;
+    @apply --text-many;
     @media (--pc-viewport) {
       padding: 30px;
     }
@@ -145,6 +190,14 @@ export default {
       display: flex;
       & + .row {
         margin-top: 10px;
+      }
+      & a {
+        color: var(--green1);
+        &:hover {
+          @media (hover: hover) {
+            color: var(--green3);
+          }
+        }
       }
     }
   }

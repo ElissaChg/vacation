@@ -35,9 +35,9 @@ export default {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding-bottom: 10px;
+  margin-bottom: 10px;
   @media (--pc-viewport) {
-    padding-bottom: 15px;
+    margin-bottom: 15px;
   }
   & h4 {
     font-size: var(--text6);
