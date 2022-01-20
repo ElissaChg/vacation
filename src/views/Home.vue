@@ -82,7 +82,7 @@ export default {
       this.spot_getFood(_params)
     },
     search(val) {
-      this.spot_topSearchKey = val.keyword
+      this.spot_topSearchKey = val.keyword || 'null'
       this.$router.push(`/${val.type}`)
     },
   },

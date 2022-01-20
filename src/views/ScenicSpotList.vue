@@ -142,9 +142,13 @@ export default {
       immediate: true,
       handler(val) {
         if (val) {
-          this.searchKey = val
+          if (val === 'null') {
+            this.searchKey = ''
+          } else {
+            this.searchKey = val
+          }
+          this.search()
         }
-        this.search()
       },
     },
     spot_scenicSpot(val) {
